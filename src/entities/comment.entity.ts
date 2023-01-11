@@ -7,8 +7,8 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('post')
-class Post {
+@Entity('comment')
+class Comment {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -25,4 +25,4 @@ class Post {
     deletedAt: Date;
 }
 
-export { Post };
+export { Comment };
