@@ -23,8 +23,8 @@ class Address {
   @Column()
   cep: string;
 
-  //insert FK usuario here
-  //insert FK loja here
+  //insert FK usuario here.
+  //insert FK loja here.
 }
 
 export default Address;
