@@ -28,6 +28,8 @@ const updateProductSchema: SchemaOf<IUpdateProduct> = yup.object().shape({
     image: yup.string(),
     price: yup.number(),
     quantity: yup.number()
-  })
+})
 
-export { createProductSchema, returnedProductSchema, updateProductSchema }
+const productsListSchema: SchemaOf<IProduct[]> = yup.array(returnedProductSchema)
+
+export { createProductSchema, returnedProductSchema, updateProductSchema, productsListSchema }
