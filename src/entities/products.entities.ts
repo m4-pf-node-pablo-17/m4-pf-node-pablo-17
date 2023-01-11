@@ -21,7 +21,7 @@ class Product {
   @Column()
   image: string;
 
-  @Column()
+  @Column({ type: 'decimal', precision: 12, scale: 2 })
   price: number;
 
   @Column()
