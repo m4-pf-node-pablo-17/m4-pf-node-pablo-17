@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
 
 @Entity("addresses")
 class Address {
@@ -22,9 +22,6 @@ class Address {
 
   @Column()
   cep: string;
-
-  //insert FK usuario here
-  //insert FK loja here
 }
 
-export default Address;
+export { Address };

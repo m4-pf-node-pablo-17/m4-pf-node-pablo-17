@@ -1,41 +1,72 @@
 import { hashSync } from "bcryptjs";
-import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
+import { Address } from "./addresses.entity";
+import { Post } from "./post.entity";
+import { Product } from "./products.entities";
+import { Comment } from "./comment.entity";
 
-@Entity('users')
+@Entity("users")
 class User {
-    @PrimaryGeneratedColumn('uuid')
-    id: string
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
-    @Column()
-    image: string
+  @Column()
+  image: string;
 
-    @Column()
-    name: string
+  @Column()
+  name: string;
 
-    @Column({ unique: true })
-    email: string
+  @Column({ unique: true })
+  email: string;
 
-    @Column()
-    password: string
+  @Column()
+  password: string;
 
-    @Column()
-    contact: string
+  @Column()
+  contact: string;
 
-    @Column()
-    cpf: string
+  @Column()
+  cpf: string;
 
-    @CreateDateColumn()
-    createdAt: Date
+  @CreateDateColumn()
+  createdAt: Date;
 
-    @UpdateDateColumn()
-    updatedAt: Date
+  @UpdateDateColumn()
+  updatedAt: Date;
 
-    @DeleteDateColumn({ nullable: true })
-    deletedAt: Date
+  @DeleteDateColumn({ nullable: true })
+  deletedAt: Date;
 
-    @BeforeInsert()
-    @BeforeUpdate()
-    hashPassword(){
-        this.password = hashSync(this.password, 10)
-    };
+  @BeforeInsert()
+  @BeforeUpdate()
+  hashPassword() {
+    this.password = hashSync(this.password, 10);
+  }
+
+  @OneToOne(() => Address)
+  @JoinColumn()
+  address: Address;
+
+  @OneToMany(() => Product, (product) => product.user)
+  products: Product;
+
+  @OneToMany(() => Post, (posts) => posts.user)
+  posts: Post;
+
+  @OneToMany(() => Comment, (comments) => comments.user)
+  comments: Comment;
 }
+
+export { User };

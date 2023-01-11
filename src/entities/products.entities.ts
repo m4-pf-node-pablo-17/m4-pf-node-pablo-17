@@ -3,13 +3,16 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from 'typeorm';
+} from "typeorm";
+import { Store } from "./store.entity";
+import { User } from "./user.entity";
 
-@Entity('products')
+@Entity("products")
 class Product {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column()
@@ -21,7 +24,7 @@ class Product {
   @Column()
   image: string;
 
-  @Column({ type: 'decimal', precision: 12, scale: 2 })
+  @Column({ type: "decimal", precision: 12, scale: 2 })
   price: number;
 
   @Column()
@@ -35,6 +38,12 @@ class Product {
 
   @DeleteDateColumn()
   deleteAt: Date;
+
+  @ManyToOne(() => User, (users) => users.products, { eager: true })
+  user: User;
+
+  @ManyToOne(() => Store, (store) => store.products, { eager: true })
+  store: Store;
 }
 
 export { Product };
