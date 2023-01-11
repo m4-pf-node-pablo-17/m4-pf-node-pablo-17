@@ -38,7 +38,10 @@ class User {
   contact: string;
 
   @Column()
-  cpf: string;
+  register: string;
+
+  @Column()
+  isStore: boolean;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -59,7 +62,7 @@ class User {
   @JoinColumn()
   address: Address;
 
-  @OneToMany(() => Product, (product) => product.user)
+  @OneToMany(() => Product, (product) => product.user, { nullable: true })
   products: Product;
 
   @OneToMany(() => Post, (posts) => posts.user)
