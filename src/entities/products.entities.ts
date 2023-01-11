@@ -7,7 +7,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Store } from "./store.entity";
 import { User } from "./user.entity";
 
 @Entity("products")
@@ -41,9 +40,6 @@ class Product {
 
   @ManyToOne(() => User, (users) => users.products, { eager: true })
   user: User;
-
-  @ManyToOne(() => Store, (store) => store.products, { eager: true })
-  store: Store;
 }
 
 export { Product };
