@@ -4,11 +4,29 @@ import {
   listUsersController,
   updateUserController,
 } from '../controllers/users.controller';
+import ensureAuthMiddleware from '../middlewares/ensureAuth.middleware';
+import ensureIsAdmMiddleware from '../middlewares/ensureIsStore.middleware';
+import ensureOwnerIsAdmMiddleware from '../middlewares/ensureOwner.middleware';
 
 const userRoutes = Router();
 
-userRoutes.get('', listUsersController);
-userRoutes.get('/:id', listUserByIdController);
-userRoutes.patch('/:id', updateUserController);
+userRoutes.get(
+  '',
+  ensureAuthMiddleware,
+  ensureIsAdmMiddleware,
+  listUsersController
+);
+userRoutes.get(
+  '/:id',
+  ensureAuthMiddleware,
+  ensureIsAdmMiddleware,
+  listUserByIdController
+);
+userRoutes.patch(
+  '/:id',
+  ensureAuthMiddleware,
+  ensureOwnerIsAdmMiddleware,
+  updateUserController
+);
 
 export default userRoutes;
