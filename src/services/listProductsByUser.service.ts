@@ -1,6 +1,6 @@
-import { AppDataSource } from "../data-source"
-import { Product } from "../entities/products.entities"
-import { User } from "../entities/user.entity"
+import { AppDataSource } from '../data-source'
+import { Product } from '../entities/products.entities'
+import { User } from '../entities/user.entity'
 
 const listProductsByUserService = async (id: string) => {
     // const productsRepository = AppDataSource.getRepository(Product)
