@@ -43,6 +43,9 @@ class User {
   @Column()
   isStore: boolean;
 
+  @Column({ default: true })
+  isActive: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
