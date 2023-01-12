@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
-import { AppError } from '../errors/appError';
+import { Request, Response, NextFunction } from "express";
+import { AppError } from "../../errors/appError";
 
 const ensureOwnerIsAdmMiddleware = async (
   req: Request,
@@ -9,7 +9,7 @@ const ensureOwnerIsAdmMiddleware = async (
   const { id, isStore } = req.user;
 
   if (id !== req.params.id && !isStore) {
-    throw new AppError('Not Authorization', 401);
+    throw new AppError("Not Authorization", 401);
   }
 
   return next();

@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
-import { AppError } from '../errors/appError';
+import { Request, Response, NextFunction } from "express";
+import { AppError } from "../../errors/appError";
 
 const ensureIsAdmMiddleware = async (
   req: Request,
@@ -9,7 +9,7 @@ const ensureIsAdmMiddleware = async (
   const isStore = req.user.isStore;
 
   if (!isStore) {
-    throw new AppError('User is not store', 403);
+    throw new AppError("User is not store", 403);
   }
 
   return next();
