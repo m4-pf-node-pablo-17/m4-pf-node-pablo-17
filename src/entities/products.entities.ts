@@ -29,6 +29,9 @@ class Product {
   @Column()
   quantity: number;
 
+  @Column({ default: true })
+  isActive: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
