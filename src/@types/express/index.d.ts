@@ -6,6 +6,7 @@ declare global {
       user: {
         id: string;
         isStore: boolean;
+        isActive: boolean;
       };
     }
   }
