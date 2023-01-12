@@ -6,9 +6,13 @@ const ensureOwnerIsAdmMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { id, isStore } = req.user;
+  const { id, isActive } = req.user;
 
-  if (id !== req.params.id && !isStore) {
+  if (id !== req.params.id) {
+    throw new AppError("Not Authorization", 401);
+  }
+
+  if (isActive !== false) {
     throw new AppError("Not Authorization", 401);
   }
 

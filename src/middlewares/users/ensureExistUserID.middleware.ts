@@ -5,7 +5,7 @@ import { AppError } from "../../errors/appError";
 
 const ensureExistUserIDMiddleware = async (
   req: Request,
-  resp: Response,
+  res: Response,
   next: NextFunction
 ) => {
   const userRepository = AppDataSource.getRepository(User);
@@ -13,7 +13,7 @@ const ensureExistUserIDMiddleware = async (
   const ensureExistId = await userRepository.findOneBy({ id: req.params.id });
 
   if (!ensureExistId) {
-    throw new AppError("User does not exist", 404);
+    throw new AppError("User not exist", 400);
   }
 
   next();

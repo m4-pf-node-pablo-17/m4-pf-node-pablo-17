@@ -8,6 +8,7 @@ import {
 import { createUserService } from "../services/users/createUser.service";
 import { deleteUserService } from "../services/users/deleteUser.service";
 import listUsersService from "../services/users/listUser.service";
+import { listUserIDService } from "../services/users/listUserID.service";
 import { loginUserService } from "../services/users/loginUser.service";
 import updateUserService from "../services/users/updateUser.service";
 
@@ -17,8 +18,9 @@ const listUsersController = async (req: Request, res: Response) => {
 };
 
 const listUserByIdController = async (req: Request, res: Response) => {
-  const id = req.body;
-  return res.status(200).json(id);
+  const userId = req.params.id;
+  const listIDUser = await listUserIDService(userId);
+  return res.status(200).json(listIDUser);
 };
 
 const updateUserController = async (req: Request, res: Response) => {

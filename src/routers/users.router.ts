@@ -9,29 +9,24 @@ import {
 import ensureAuthMiddleware from "../middlewares/users/ensureAuth.middleware";
 import { ensureExistsUserMiddleware } from "../middlewares/users/ensureExistsUser.middleware";
 import { ensureExistUserIDMiddleware } from "../middlewares/users/ensureExistUserID.middleware";
-import ensureIsAdmMiddleware from "../middlewares/users/ensureIsStore.middleware";
 import ensureOwnerIsAdmMiddleware from "../middlewares/users/ensureOwner.middleware";
 import { userSchema } from "../schemas/user/schemaUser";
 
 const userRoutes = Router();
 
-userRoutes.get(
-  "",
-  ensureAuthMiddleware,
-  ensureIsAdmMiddleware,
-  listUsersController
-);
+userRoutes.get("", ensureAuthMiddleware, listUsersController);
 
 userRoutes.get(
   "/:id",
+  ensureExistUserIDMiddleware,
   ensureAuthMiddleware,
-  ensureIsAdmMiddleware,
   listUserByIdController
 );
 
 userRoutes.patch(
   "/:id",
   ensureAuthMiddleware,
+  ensureExistUserIDMiddleware,
   ensureOwnerIsAdmMiddleware,
   updateUserController
 );
