@@ -14,6 +14,7 @@ const respUserSchema: SchemaOf<IUserResponse> = yup.object().shape({
   contact: yup.string().notRequired(),
   register: yup.string().notRequired(),
   isStore: yup.boolean().notRequired(),
+  isActive: yup.boolean().notRequired(),
   createdAt: yup.date().notRequired(),
   updatedAt: yup.date().notRequired(),
 });
@@ -31,6 +32,7 @@ const userSchema: SchemaOf<IUserRequest> = yup.object().shape({
 });
 
 export const updateSchema: SchemaOf<IUserUpdate> = yup.object().shape({
+  image: yup.string().notRequired(),
   email: yup.string().email().notRequired(),
   name: yup.string().notRequired(),
   password: yup.string().notRequired(),

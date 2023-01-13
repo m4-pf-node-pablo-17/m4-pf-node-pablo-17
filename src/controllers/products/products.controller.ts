@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
-import { Repository } from 'typeorm';
 import { deleteProductService } from '../../services/deleteProduct.service';
 import listProductsByUserService from '../../services/listProductsByUser.service';
+import createProductService from '../../services/products/createProduct.service';
+import listAllProductsService from '../../services/products/listAllProducts.service';
+import listProductByIdService from '../../services/products/listProductById.service';
 import { updateProductService } from '../../services/updateProduct.service';
 
 const listProductsByUserController = async (req: Request, res: Response) => {
@@ -26,12 +28,33 @@ const deleteProductController = async (req: Request, res: Response) => {
     return res.status(204).json(product)
 }
 
-const listProductsController = async (req: Request, res: Response) => {
+const listAllProductsController = async (req: Request, res: Response) => {
+    const products = await listAllProductsService()
+
+    return res.status(200).json(products)
+}
+
+const createProductController = async (req: Request, res: Response) => {
+    const dataProduct = req.body
     
+    const createdProduct = createProductService(dataProduct)
+
+    return res.status(201).json(createdProduct)
+}
+
+const listProductByIdController = async (req: Request, res: Response) => {    
+    const paramsId = req.params.id
+
+    const product = await listProductByIdService(paramsId)
+
+    return res.status(200).json(product)
 }
 
 export { 
     listProductsByUserController, 
     updateProductController, 
-    deleteProductController 
+    deleteProductController,
+    listAllProductsController,
+    createProductController,
+    listProductByIdController
 }
