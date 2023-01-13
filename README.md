@@ -49,7 +49,7 @@ Após o usuário estar logado, ele deve conseguir visualizar produtos, postagens
 Nessa aplicação o usuário após fazer o login ou se cadastrar pode ver usuários e lojas juntamente com seus produtos já cadastradas na plataforma, na API podemos acessar a lista dessa forma:
 
 ##
-## Rota para buscar usuário, e seus produtos cadastrados:
+## Rota para buscar usuário e seus produtos cadastrados:
 
 `GET products/users/userId - FORMATO DA RESPOSTA - STATUS 200`
 
