@@ -1,7 +1,10 @@
 import * as yup from 'yup';
 import { SchemaOf } from 'yup';
-import { IPosts, IPostsRequest, IPostsResponse } from '../../interfaces/posts/postsInterface';
-import { IUserUpdate } from '../../interfaces/user/userInterface';
+import {
+    IPosts,
+    IPostsResponse,
+    IPostsUpdate,
+} from '../../interfaces/posts/postsInterface';
 
 const respPostsSchema: SchemaOf<IPostsResponse> = yup.object().shape({
     id: yup.string().notRequired(),
@@ -24,13 +27,10 @@ const postsSchema: SchemaOf<IPosts> = yup.object().shape({
     deletedAt: yup.date().notRequired(),
 });
 
-export const updateSchema: SchemaOf<IUserUpdate> = yup.object().shape({
-    email: yup.string().email().notRequired(),
-    name: yup.string().notRequired(),
-    password: yup.string().notRequired(),
-    contact: yup.string().notRequired(),
-    register: yup.string().notRequired(),
-    isStore: yup.boolean().notRequired(),
+export const updateSchema: SchemaOf<IPostsUpdate> = yup.object().shape({
+    title: yup.string().notRequired(),
+    image: yup.string().notRequired(),
+    text: yup.string().notRequired(),
 });
 
 export { respPostsSchema, listRespPostsSchema, postsSchema };
