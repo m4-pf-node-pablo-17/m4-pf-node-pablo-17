@@ -1,13 +1,18 @@
-import { AppDataSource } from '../../data-source';
-import { IUser } from '../../interfaces/user/userInterface';
-import { User } from '../../entities/user.entity';
+import { AppDataSource } from "../../data-source";
+import { IUserResponse } from "../../interfaces/user/userInterface";
+import { User } from "../../entities/user.entity";
+import { listRespUserSchema } from "../../schemas/user/schemaUser";
 
-const listUsersService = async (): Promise<IUser[]> => {
+const listUsersService = async (): Promise<IUserResponse[]> => {
   const userRepository = AppDataSource.getRepository(User);
 
   const users = await userRepository.find();
 
-  return users;
+  const respUser = await listRespUserSchema.validate(users, {
+    stripUnknown: true,
+  });
+
+  return respUser!;
 };
 
 export default listUsersService;
