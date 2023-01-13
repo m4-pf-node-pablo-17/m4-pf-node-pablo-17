@@ -6,6 +6,7 @@ export interface IUser {
   contact: string;
   register: string;
   isStore: boolean;
+  isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -28,6 +29,7 @@ export interface IUserResponse {
   contact?: string;
   register?: string;
   isStore?: boolean;
+  isActive?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }

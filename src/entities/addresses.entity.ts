@@ -1,8 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
 
-@Entity("addresses")
+
+@Entity('addresses')
 class Address {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
