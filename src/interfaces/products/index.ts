@@ -17,12 +17,9 @@ interface IProduct {
   quantity: number | undefined,
   createdAt: Date | undefined,
   updatedAt: Date | undefined,
-  deleteAt: Date | undefined,
   user: IUserResponse | undefined,
   isActive: boolean | undefined
 }
-
-
 
 interface IUpdateProduct {
   name?: string,

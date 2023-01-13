@@ -2,7 +2,7 @@ import { AppDataSource } from "../../data-source"
 import { Product } from "../../entities/products.entities"
 import { User } from "../../entities/user.entity"
 import { IProductRequest } from "../../interfaces/products"
-import { createProductSchema } from "../../schemas/products.schema"
+import { createProductSchema, returnedProductSchema } from "../../schemas/products.schema"
 
 const createProductService = async ({ name,description,image,price, quantity }: IProductRequest, userId: string ) => {
     
@@ -24,7 +24,7 @@ const createProductService = async ({ name,description,image,price, quantity }: 
     console.log(productData)
     await productRepository.save(productData)
 
-    const returnedProduct = createProductSchema.validate(productData, {
+    const returnedProduct = await returnedProductSchema.validate(productData, {
         stripUnknown: true
     })
     return returnedProduct

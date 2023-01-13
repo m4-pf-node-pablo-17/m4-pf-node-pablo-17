@@ -19,7 +19,6 @@ const returnedProductSchema: SchemaOf<IProduct> = yup.object().shape({
     quantity: yup.number(),
     createdAt: yup.date(),
     updatedAt: yup.date(),
-    deleteAt: yup.date(),
     isActive: yup.boolean(),
     user: yup.object().shape({
       id: yup.string(),
@@ -31,7 +30,7 @@ const returnedProductSchema: SchemaOf<IProduct> = yup.object().shape({
       isStore: yup.boolean(),
       isActive: yup.boolean(),
       createdAt: yup.date(),
-      updatedAt: yup.date(),
+      updatedAt: yup.date()
     }),
 })
 
@@ -43,6 +42,6 @@ const updateProductSchema: SchemaOf<IUpdateProduct> = yup.object().shape({
     quantity: yup.number()
 })
 
-const productsListSchema: SchemaOf<IProduct[]> = yup.array(returnedProductSchema)
-
+const productsListSchema = yup.array(returnedProductSchema)
+// : SchemaOf<IProduct[]>
 export { createProductSchema, returnedProductSchema, updateProductSchema, productsListSchema }
