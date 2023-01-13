@@ -27,4 +27,4 @@ class Address {
   //insert FK loja here
 }
 
-export default Address;
+export { Address };
