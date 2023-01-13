@@ -6,6 +6,7 @@ import postsRoutes from './routers/posts.router';
 import userRoutes from './routers/users.router';
 import { loginRouter } from './routers/login.router';
 import commentRoutes from './routers/comment.router';
+import productRouter from './routers/products.router';
 
 export const app = express();
 
@@ -18,5 +19,7 @@ app.use('/posts', postsRoutes);
 app.use('/login', loginRouter);
 
 app.use('/message', commentRoutes);
+
+app.use('/products', productRouter);
 
 app.use(errorIdentify);
