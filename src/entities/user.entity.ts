@@ -13,9 +13,9 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Address } from "./addresses.entity";
-//import { Post } from "./post.entity";
+import { Post } from "./post.entity";
 import { Product } from "./products.entities";
-//import { Comment } from "./comment.entity";
+import { Comment } from "./comment.entity";
 
 @Entity("users")
 class User {
@@ -68,11 +68,11 @@ class User {
   @OneToMany(() => Product, (product) => product.user, { nullable: true })
   products: Product;
 
- /*  @OneToMany(() => Post, (posts) => posts.user)
+  @OneToMany(() => Post, (posts) => posts.user)
   posts: Post;
 
   @OneToMany(() => Comment, (comments) => comments.user)
-  comments: Comment; */
+  comments: Comment;
 }
 
 export { User };

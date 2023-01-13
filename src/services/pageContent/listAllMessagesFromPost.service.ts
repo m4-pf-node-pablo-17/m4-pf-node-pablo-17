@@ -1,4 +1,4 @@
-import { AppDataSource } from '../data-source';
+import { AppDataSource } from '../../data-source';
 //import { Post } from '../entities/post.entity';
 
 const listAllMessagesFromPostService = async (postId: number) => {

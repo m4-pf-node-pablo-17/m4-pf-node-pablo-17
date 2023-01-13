@@ -3,6 +3,6 @@ import { listAllMessagesFromPostController } from "../controllers/messagesFromPo
 
 const messagesFromPostRoutes = Router()
 
-messagesFromPostRoutes.get('/message/:id/posts', listAllMessagesFromPostController)
+messagesFromPostRoutes.get('/:id/posts', listAllMessagesFromPostController)
 
 export default messagesFromPostRoutes

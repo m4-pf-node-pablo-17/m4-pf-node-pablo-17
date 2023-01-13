@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import listAllMessagesFromPostService from "../services/listAllMessagesFromPost.service";
+import listAllMessagesFromPostService from "../services/pageContent/listAllMessagesFromPost.service";
 
 
 const listAllMessagesFromPostController = async (req: Request, res: Response) => {
