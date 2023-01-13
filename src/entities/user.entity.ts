@@ -66,7 +66,7 @@ class User {
   address: Address;
 
   @OneToMany(() => Product, (product) => product.user, { nullable: true })
-  products: Product;
+  products: Product[];
 
   @OneToMany(() => Post, (posts) => posts.user)
   posts: Post;
