@@ -6,12 +6,12 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from "typeorm";
-import { User } from "./user.entity";
+} from 'typeorm';
+import { User } from './user.entity';
 
-@Entity("products")
+@Entity('products')
 class Product {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -23,7 +23,7 @@ class Product {
   @Column()
   image: string;
 
-  @Column({ type: "decimal", precision: 12, scale: 2 })
+  @Column({ type: 'decimal', precision: 12, scale: 2 })
   price: number;
 
   @Column()
