@@ -7,6 +7,7 @@ import userRoutes from "./routers/users.router";
 import { loginRouter } from "./routers/login.router";
 import productRouter from "./routers/products.router";
 
+
 export const app = express();
 
 app.use(express.json());
