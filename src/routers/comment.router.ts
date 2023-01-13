@@ -8,9 +8,9 @@ import {
 
 const commentRoutes = Router();
 
-commentRoutes.post('', createCommentController);
+commentRoutes.post('/:id', createCommentController);
 commentRoutes.patch('', updateCommentController);
 commentRoutes.delete('', deleteCommentController);
-commentRoutes.get('/:id', listAllMessagesFromPostController)
+commentRoutes.get('/:id/posts', listAllMessagesFromPostController)
 
 export default commentRoutes;
