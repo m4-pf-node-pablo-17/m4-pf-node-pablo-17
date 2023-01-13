@@ -3,9 +3,9 @@ import listAllMessagesFromPostService from "../services/comment/listAllMessagesF
 
 
 const listAllMessagesFromPostController = async (req: Request, res: Response) => {
-    const messageId: number = parseInt(req.params.id)
+    const messageId: string = req.params.id
     const posts = await listAllMessagesFromPostService(messageId)
     return res.json(posts)
 }
 
-export { listAllMessagesFromPostController }
+export { listAllMessagesFromPostController };
