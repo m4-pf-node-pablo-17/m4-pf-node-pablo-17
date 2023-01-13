@@ -19,6 +19,10 @@ export const errorIdentify = async (
     return resp.status(error.status).json({ message: error.message });
   }
 
+  if (error.message.includes("invalid input syntax for type uuid")) {
+    return resp.status(404).json({ message: error.message });
+  }
+
   console.log(error);
 
   return resp.status(500).json({ message: "Erro interno no servidor" });
