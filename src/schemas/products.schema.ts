@@ -19,7 +19,20 @@ const returnedProductSchema: SchemaOf<IProduct> = yup.object().shape({
     quantity: yup.number(),
     createdAt: yup.date(),
     updatedAt: yup.date(),
-    deleteAt: yup.date()
+    deleteAt: yup.date(),
+    isActive: yup.boolean(),
+    user: yup.object().shape({
+      id: yup.string(),
+      image: yup.string(),
+      name: yup.string(),
+      email: yup.string().email(),
+      contact: yup.string(),
+      register: yup.string(),
+      isStore: yup.boolean(),
+      isActive: yup.boolean(),
+      createdAt: yup.date(),
+      updatedAt: yup.date(),
+    }),
 })
 
 const updateProductSchema: SchemaOf<IUpdateProduct> = yup.object().shape({

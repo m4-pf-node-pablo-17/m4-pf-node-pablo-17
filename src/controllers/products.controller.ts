@@ -8,9 +8,23 @@ import updateProductService from '../services/products/updateProduct.service'
 
 
 const createProductController = async (req: Request, res: Response) => {
-    const dataProduct = req.body
+    const {
+            name,
+            description,
+            image,
+            price, 
+            quantity,
+    } = req.body
+    const userId      = req.user.id
     
-    const createdProduct = await createProductService(dataProduct)
+    const createdProduct = await createProductService({
+        name,
+        description,
+        image,
+        price, 
+        quantity,
+   
+    }, userId)
 
     return res.status(201).json(createdProduct)
 }

@@ -1,14 +1,27 @@
 import { AppDataSource } from "../../data-source"
 import { Product } from "../../entities/products.entities"
+import { User } from "../../entities/user.entity"
 import { IProductRequest } from "../../interfaces/products"
 import { createProductSchema } from "../../schemas/products.schema"
 
-const createProductService = async (dataProduct: IProductRequest) => {
+const createProductService = async ({ name,description,image,price, quantity }: IProductRequest, userId: string ) => {
     
     const productRepository = AppDataSource.getRepository(Product)
+    const userRepository    = AppDataSource.getRepository(User)
 
-    const productData = productRepository.create(dataProduct)
-console.log(productData)
+    const user = await userRepository.findOneBy({
+        id: userId
+    })
+
+    const productData = productRepository.create({
+        name: name,
+        description: description,
+        image: image,
+        price: price,
+        quantity: quantity,
+        user: user!
+    })
+    console.log(productData)
     await productRepository.save(productData)
 
     const returnedProduct = createProductSchema.validate(productData, {

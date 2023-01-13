@@ -1,3 +1,5 @@
+import { IUserResponse } from "../user/userInterface"
+
 interface IProductRequest {
   name: string,
   description: string,
@@ -15,8 +17,12 @@ interface IProduct {
   quantity: number | undefined,
   createdAt: Date | undefined,
   updatedAt: Date | undefined,
-  deleteAt: Date | undefined
+  deleteAt: Date | undefined,
+  user: IUserResponse | undefined,
+  isActive: boolean | undefined
 }
+
+
 
 interface IUpdateProduct {
   name?: string,
