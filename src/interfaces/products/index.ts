@@ -21,6 +21,18 @@ interface IProduct {
   isActive: boolean | undefined
 }
 
+interface IProductInfo {
+  id: string | undefined,
+  name: string | undefined,
+  description: string | undefined,
+  image: string | undefined,
+  price: number | undefined,
+  quantity: number | undefined,
+  createdAt: Date | undefined,
+  updatedAt: Date | undefined,
+  isActive: boolean | undefined
+}
+
 interface IUpdateProduct {
   name?: string,
   description?: string,
@@ -29,4 +41,4 @@ interface IUpdateProduct {
   quantity?: number
 }
 
-export { IProductRequest, IProduct, IUpdateProduct }
+export { IProductRequest, IProduct, IUpdateProduct, IProductInfo }

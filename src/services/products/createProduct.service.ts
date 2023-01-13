@@ -1,10 +1,10 @@
-import { AppDataSource } from "../../data-source"
-import { Product } from "../../entities/products.entities"
-import { User } from "../../entities/user.entity"
-import { IProductRequest } from "../../interfaces/products"
-import { createProductSchema, returnedProductSchema } from "../../schemas/products.schema"
+import { AppDataSource } from '../../data-source'
+import { Product } from '../../entities/products.entities'
+import { User } from '../../entities/user.entity'
+import { IProduct, IProductRequest } from '../../interfaces/products'
+import { returnedProductSchema } from '../../schemas/products/products.schema'
 
-const createProductService = async ({ name,description,image,price, quantity }: IProductRequest, userId: string ) => {
+const createProductService = async ({ name, description, image, price, quantity }: IProductRequest, userId: string ): Promise<IProduct> => {
     
     const productRepository = AppDataSource.getRepository(Product)
     const userRepository    = AppDataSource.getRepository(User)
@@ -21,7 +21,6 @@ const createProductService = async ({ name,description,image,price, quantity }: 
         quantity: quantity,
         user: user!
     })
-    console.log(productData)
     await productRepository.save(productData)
 
     const returnedProduct = await returnedProductSchema.validate(productData, {

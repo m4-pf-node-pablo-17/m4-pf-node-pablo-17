@@ -1,17 +1,16 @@
-import { AppDataSource } from "../../data-source"
-import { Product } from "../../entities/products.entities"
-import { productsListSchema } from "../../schemas/products.schema"
+import { AppDataSource } from '../../data-source'
+import { Product } from '../../entities/products.entities'
+import { IProduct } from '../../interfaces/products'
+import { productsListSchema } from '../../schemas/products/products.schema'
 
-const listAllProductsService = async () => {
+const listAllProductsService = async (): Promise<IProduct[] | undefined> => {
 
     const productRepository = AppDataSource.getRepository(Product)
     const listProducts = await productRepository.find()
-    // console.log(listProducts)
 
     const returnedList = await productsListSchema.validate(listProducts, {
         stripUnknown: true
     })
-    // console.log(returnedList)
 
     return returnedList
 }

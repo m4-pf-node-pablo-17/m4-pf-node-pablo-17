@@ -1,28 +1,21 @@
 import { AppDataSource } from '../../data-source'
-import { Product } from '../../entities/products.entities'
 import { User } from '../../entities/user.entity'
+import { IProductInfo } from '../../interfaces/products'
+import { productsByUserListSchema } from '../../schemas/products/products.schema'
 
-
-const listProductsByUserService = async (id: string) => {
-    // const productsRepository = AppDataSource.getRepository(Product)
-
-    // const productsList = productsRepository.findOne({
-    //     where: {
-    //         user: id
-    //     },
-    //     relations: {
-    //         user: true
-    //     }
-    // })
-
+const listProductsByUserService = async (userId: string): Promise<IProductInfo[] | undefined> => {
     const userRepository = AppDataSource.getRepository(User)
-
-    const userList = userRepository.findOne({
-        where: { id: id },
+       
+    const userList = await userRepository.findOne({ 
+        where: { id: userId },
         relations: { products: true }
     })
 
-    return userList
+    const returnedList = await productsByUserListSchema.validate(userList?.products, {
+        stripUnknown: true
+    })
+
+    return returnedList
 }
 
 export default listProductsByUserService

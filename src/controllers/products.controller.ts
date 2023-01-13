@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import { IProductRequest, IUpdateProduct } from '../interfaces/products'
 import createProductService from '../services/products/createProduct.service'
 import deleteProductService from '../services/products/deleteProduct.service'
 import listAllProductsService from '../services/products/listAllProducts.service'
@@ -14,7 +15,7 @@ const createProductController = async (req: Request, res: Response) => {
             image,
             price, 
             quantity,
-    } = req.body
+    }: IProductRequest = req.body
     const userId      = req.user.id
     
     const createdProduct = await createProductService({
@@ -52,7 +53,7 @@ const listProductsByUserController = async (req: Request, res: Response) => {
 }
 
 const updateProductController = async (req: Request, res: Response) => {
-    const data = req.body
+    const data: IUpdateProduct = req.body
     
     const paramsId = req.params.id
 
@@ -68,6 +69,7 @@ const deleteProductController = async (req: Request, res: Response) => {
 
     return res.status(204).json(product)
 }
+
 export { 
     listProductsByUserController, 
     updateProductController, 
