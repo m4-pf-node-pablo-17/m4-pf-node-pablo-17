@@ -4,7 +4,7 @@ import 'reflect-metadata';
 import { errorIdentify } from './errors/appError';
 import postsRoutes from './routers/posts.router';
 import userRoutes from './routers/users.router';
-import loginRouter from './routers/login.router';
+import { loginRouter } from './routers/login.router';
 
 export const app = express();
 
