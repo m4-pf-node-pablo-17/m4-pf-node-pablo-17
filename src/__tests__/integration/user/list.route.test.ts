@@ -6,7 +6,7 @@ import { AppDataSource } from '../../../data-source';
 import { mockedListUsers } from '../../mocks/integration/user.mock';
 import { app } from '../../../app';
 
-describe('Create user route tests', () => {
+describe('List user route tests', () => {
   let conn: DataSource;
   const baseUrl: string = '/users';
 
@@ -73,5 +73,38 @@ describe('Create user route tests', () => {
 
     expect(response.status).toBe(expectedResponse.status);
     expect(response.body).toStrictEqual(expectedResponse.bodyToEqual);
+  });
+
+  it('Must be able to list a user', async () => {
+    const token = sign(
+      { isStore: true || false, isActive: true },
+      process.env.SECRET_KEY,
+      {
+        subject: '1',
+      }
+    );
+
+    const response = await request(app)
+      .get(`${baseUrl}/:id`)
+      .set('Authorization', `Bearer ${token}`)
+      .send();
+
+    const expectedResponse = {
+      status: 200,
+      bodyToHaveLength: response.body[0].id,
+    };
+
+    expect(response.status).toBe(expectedResponse.status);
+    expect(response.body).toHaveLength(expectedResponse.bodyToHaveLength);
+    expect(response.body).not.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ password: expect.any(String) }),
+      ])
+    );
+    expect(response.body).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ id: expect.any(String) }),
+      ])
+    );
   });
 });

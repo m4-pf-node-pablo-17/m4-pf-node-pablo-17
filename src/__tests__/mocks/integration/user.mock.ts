@@ -1,3 +1,8 @@
+import {
+  IUserLogin,
+  IUserUpdate,
+} from '../../../interfaces/user/userInterface';
+
 const mockedListUsers = [
   {
     image: 'https://source.unsplash.com/random',
@@ -28,4 +33,14 @@ const mockedListUsers = [
   },
 ];
 
-export { mockedListUsers };
+const mockedLoginUser: IUserLogin = {
+  email: 'sakurakawaii@mail.com',
+  password: 'mahoushoujo1',
+};
+
+const mockedUpdatedBodyUser: IUserUpdate = {
+  name: 'JoJo',
+  password: 'stonefree6',
+};
+
+export { mockedListUsers, mockedUpdatedBodyUser, mockedLoginUser };
