@@ -12,7 +12,7 @@ const ensureOwnerIsAdmMiddleware = async (
     throw new AppError("Not Authorization", 401);
   }
 
-  if (isActive !== false) {
+  if (isActive === false) {
     throw new AppError("Not Authorization", 401);
   }
 

@@ -1,6 +1,6 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Post } from "./post.entity";
 import { Comment } from "./comment.entity";
+import { Post } from "./post.entity";
 
 @Entity("pageContent")
 class PageContent {
