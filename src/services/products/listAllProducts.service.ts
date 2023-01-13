@@ -6,7 +6,7 @@ const listAllProductsService = async () => {
     const productRepository = AppDataSource.getRepository(Product)
     const listProducts = await productRepository.find()
 
-    return listProducts
+    return listProducts;
 }
 
 export default listAllProductsService

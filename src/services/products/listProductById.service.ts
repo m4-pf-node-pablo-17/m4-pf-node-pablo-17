@@ -9,7 +9,7 @@ const listProductByIdService = async (paramsId: string) => {
         id: paramsId
     })
 
-    return product
+    return product;
 }
 
 export default listProductByIdService

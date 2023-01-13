@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
-import { deleteProductService } from '../../services/deleteProduct.service';
-import listProductsByUserService from '../../services/listProductsByUser.service';
-import createProductService from '../../services/products/createProduct.service';
-import listAllProductsService from '../../services/products/listAllProducts.service';
-import listProductByIdService from '../../services/products/listProductById.service';
-import { updateProductService } from '../../services/updateProduct.service';
+import { Request, Response } from 'express'
+import { deleteProductService } from '../../services/deleteProduct.service'
+import listProductsByUserService from '../../services/listProductsByUser.service'
+import createProductService from '../../services/products/createProduct.service'
+import listAllProductsService from '../../services/products/listAllProducts.service'
+import listProductByIdService from '../../services/products/listProductById.service'
+import { updateProductService } from '../../services/updateProduct.service'
 
 const listProductsByUserController = async (req: Request, res: Response) => {
     const paramsId = req.params.id

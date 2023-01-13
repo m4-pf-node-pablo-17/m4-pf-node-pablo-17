@@ -9,7 +9,7 @@ const createProductService = async (dataProduct: object) => {
 
     await productRepository.save(productData)
 
-    return productData
+    return productData;
 }
 
 export default createProductService

@@ -1,5 +1,9 @@
-import { Router } from "express";
-import { createProductController, listAllProductsController, listProductByIdController } from "../controllers/products/products.controller";
+import { Router } from "express"
+import { 
+    createProductController, 
+    listAllProductsController, 
+    listProductByIdController 
+} from "../controllers/products/products.controller"
 
 const productRouter = Router()
 
