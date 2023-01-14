@@ -6,5 +6,5 @@ set -o errexit
 sudo npm install typescript@latest -g
 
 yarn
-yarn build
+npx tsc
 yarn typeorm migration:run -d dist/src/data-source
