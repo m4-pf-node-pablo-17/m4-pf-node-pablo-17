@@ -12,7 +12,7 @@
     "test": "cross-env NODE_ENV=test SECRET_KEY=secret_key jest --verbose --runInBand"
   },
   "devDependencies": {
-    "@types/express": "^4.17.13",
+    "@types/express": "^4.17.15",
     "@types/jest": "^28.1.4",
     "@types/supertest": "^2.0.12",
     "jest": "^28.1.2",
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.15",
     "@types/jsonwebtoken": "^9.0.1",
     "bcryptjs": "2.4.3",
     "class-transformer": "^0.5.1",
