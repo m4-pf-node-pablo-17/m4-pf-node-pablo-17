@@ -15,7 +15,10 @@ const listPostsController = async (req: Request, res: Response) => {
 
 const newPostController = async (req: Request, res: Response) => {
     const postData: IPosts = req.body;
-    const newPost = await newPostService(postData);
+    const userId = req.user.id
+    console.log("Oi de novo ", userId)
+
+    const newPost = await newPostService(postData, userId);
     return res.status(201).json(newPost);
 };
 
