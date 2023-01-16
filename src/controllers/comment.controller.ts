@@ -11,15 +11,16 @@ import listAllMessagesFromPostService from '../services/comment/listAllMessagesF
 const createCommentController = async (req: Request, res: Response) => {
   console.log('teste');
   
-  const comment: string = req.body;
+  const comment = req.body;
   const idPost: string = req.params.id
-  const createComment = await createCommentService(comment, idPost);
+  const userId = req.user.id
+
+  const createComment = await createCommentService(comment, idPost, userId);
   return res.status(201).json(createComment);
 };
 
 const updateCommentController = async (req: Request, res: Response) => {
   console.log("ALOU");
-  
   const text: ICommentUpdate = req.body;
   const commentId: string = req.params.id;
   const updatedComment = await updateCommentService(text, commentId);
