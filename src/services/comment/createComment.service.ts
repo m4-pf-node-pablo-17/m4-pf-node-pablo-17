@@ -2,29 +2,42 @@ import { AppDataSource } from '../../data-source';
 import { Comment } from '../../entities/comment.entity';
 import { PageContent } from '../../entities/pageContent.entity';
 import { Post } from '../../entities/post.entity';
+import { User } from '../../entities/user.entity';
+import { ICommentRequest } from '../../interfaces/comment/commentInterface';
 
 const createCommentService = async (
-  dataText: string,
-  id_post: string,
+    dataText: ICommentRequest,
+    id_post: string,
+    userId: string
 ) => {
+    const commentRepository = AppDataSource.getRepository(Comment);
+    const postRepository = AppDataSource.getRepository(Post);
 
-  const commentRepository = AppDataSource.getRepository(Comment);
-  const postRepository = AppDataSource.getRepository(Post)
-  const pageContentRepository = AppDataSource.getRepository(PageContent)
+    const post = await postRepository.findOneBy({
+        id: id_post,
+    });
+    const pageContentRepository = AppDataSource.getRepository(PageContent);
 
-  //TROCAR ESSE ANY 
-  const createComment = commentRepository.create(dataText as any)
+    const userRepository = AppDataSource.getRepository(User);
+    const user = await userRepository.findOneBy({
+        id: userId,
+    });
 
-  const idComment = await commentRepository.save(createComment)
+    const createComment = commentRepository.create({
+        ...dataText,
+        user: user!,
+    });
 
-  const createPageContent = pageContentRepository.create({ comments: idComment as any, post: id_post as any})
+    const idComment = await commentRepository.save(createComment);
 
-  const idPost = await pageContentRepository.save(createPageContent)
+    const createPageContent = pageContentRepository.create({
+        comments: idComment,
+        post: post!,
+    });
 
-  console.log(idPost);
-  
+    const idPost = await pageContentRepository.save(createPageContent);
 
-  return idPost;
+    return idPost;
 };
 
 export default createCommentService;
