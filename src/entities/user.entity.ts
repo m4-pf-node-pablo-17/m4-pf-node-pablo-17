@@ -12,10 +12,10 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Address } from "./addresses.entity";
 import { Post } from "./post.entity";
 import { Product } from "./products.entities";
 import { Comment } from "./comment.entity";
+import { Address } from "./addresses.entity";
 
 @Entity("users")
 class User {

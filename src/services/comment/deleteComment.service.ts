@@ -11,7 +11,9 @@ const deleteCommentService = async (commentId: string) => {
     throw new AppError('Comment not found', 404);
   }
 
-  return 'Deleted Comment';
+  const commentDeleted = await getCommentRepository.remove(findComment);
+
+  return { message: 'Comment deleted' };
 };
 
 export default deleteCommentService;

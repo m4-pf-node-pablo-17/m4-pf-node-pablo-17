@@ -1,6 +1,6 @@
 import { AppDataSource } from '../../data-source'
 import { Product } from '../../entities/products.entities'
-import { IProduct } from '../../interfaces/products'
+import { IProduct, IProductInfo } from '../../interfaces/products'
 import { productsListSchema } from '../../schemas/products/products.schema'
 
 const listAllProductsService = async (): Promise<IProduct[] | undefined> => {

@@ -1,10 +1,11 @@
-import express from 'express';
-import 'express-async-errors';
-import 'reflect-metadata';
-import { errorIdentify } from './errors/appError';
+import "reflect-metadata";
+import "express-async-errors";
+import express from "express";
+
+import { errorIdentify } from "./errors/appError";
+import userRoutes from "./routers/users.router";
+import { loginRouter } from "./routers/login.router";
 import postsRoutes from './routers/posts.router';
-import userRoutes from './routers/users.router';
-import { loginRouter } from './routers/login.router';
 import commentRoutes from './routers/comment.router';
 import productRouter from './routers/products.router';
 

@@ -3,7 +3,7 @@ export interface IComment {
   text: string;
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date;
+  deletedAt?: Date;
 }
 
 export interface ICommentRequest {
@@ -14,10 +14,23 @@ export interface ICommentResponse {
   id: string;
   text: string;
   createdAt: Date;
-  updatedAt: Date;
-  deletedAt: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
+}
+
+export interface ICommentResp {
+  id: string;
+  text: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
 }
 
 export interface ICommentUpdate {
   text?: string;
+}
+
+export interface ICommentFromPost {
+  id: string,
+  text: string
 }

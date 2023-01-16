@@ -1,22 +1,43 @@
 import { AppDataSource } from '../../data-source';
 import { Comment } from '../../entities/comment.entity';
-import {
-  ICommentRequest,
-  ICommentResponse,
-} from '../../interfaces/comment/commentInterface';
-import { respCommentSchema } from '../../schemas/comment/schemaComment';
+import { PageContent } from '../../entities/pageContent.entity';
+import { Post } from '../../entities/post.entity';
+import { User } from '../../entities/user.entity';
+import { ICommentRequest } from '../../interfaces/comment/commentInterface';
 
 const createCommentService = async (
-  text: ICommentRequest
-): Promise<ICommentResponse> => {
-  const commentRepository = AppDataSource.getRepository(Comment);
-  const createComment = commentRepository.create(text);
-  await commentRepository.save(createComment);
-  const resComment = await respCommentSchema.validate(createComment, {
-    stripUnknown: true,
-  });
+    dataText: ICommentRequest,
+    id_post: string,
+    userId: string
+) => {
+    const commentRepository = AppDataSource.getRepository(Comment);
+    const postRepository = AppDataSource.getRepository(Post);
 
-  return resComment;
+    const post = await postRepository.findOneBy({
+        id: id_post,
+    });
+    const pageContentRepository = AppDataSource.getRepository(PageContent);
+
+    const userRepository = AppDataSource.getRepository(User);
+    const user = await userRepository.findOneBy({
+        id: userId,
+    });
+
+    const createComment = commentRepository.create({
+        ...dataText,
+        user: user!,
+    });
+
+    const idComment = await commentRepository.save(createComment);
+
+    const createPageContent = pageContentRepository.create({
+        comments: idComment,
+        post: post!,
+    });
+
+    const idPost = await pageContentRepository.save(createPageContent);
+
+    return idPost;
 };
 
 export default createCommentService;
