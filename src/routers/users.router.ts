@@ -41,6 +41,7 @@ userRoutes.delete(
   "/:id",
   ensureExistUserIDMiddleware,
   ensureAuthMiddleware,
+  ensureOwnerIsAdmMiddleware,
   deleteUserController
 );
 
