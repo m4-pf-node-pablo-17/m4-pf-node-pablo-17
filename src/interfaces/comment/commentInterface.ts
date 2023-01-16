@@ -1,9 +1,12 @@
+import { IUserResponse } from "../user/userInterface";
+
 export interface IComment {
   id: string;
   text: string;
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date;
+  user: IUserResponse
 }
 
 export interface ICommentRequest {
