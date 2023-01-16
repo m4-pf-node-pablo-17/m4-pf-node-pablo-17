@@ -22,7 +22,6 @@ const createCommentService = async (
     const user = await userRepository.findOneBy({
         id: userId,
     });
-    console.log('USUARIO', user);
 
     const createComment = commentRepository.create({
         ...dataText,
@@ -35,7 +34,6 @@ const createCommentService = async (
         comments: idComment,
         post: post!,
     });
-    // console.log('pagina', createPageContent);
 
     const idPost = await pageContentRepository.save(createPageContent);
 
