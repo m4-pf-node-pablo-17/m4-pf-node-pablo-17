@@ -1,4 +1,5 @@
 import { IProductRequest } from "../../../interfaces/products"
+import { IUserLogin } from "../../../interfaces/user/userInterface";
 
 const mockedProductRequest: IProductRequest = {
     name: "Carrinho de bebê",
@@ -14,4 +15,9 @@ const mockedProductInvalidRequest: Omit<IProductRequest, "description" | "price"
     quantity: 13
 }
 
-export { mockedProductRequest, mockedProductInvalidRequest }
+const mockedLoginProductUser: IUserLogin = {
+    email: 'SddsHeroku@gmail.com',
+    password: '123456',
+};
+
+export { mockedProductRequest, mockedProductInvalidRequest, mockedLoginProductUser }
