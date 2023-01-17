@@ -29,6 +29,7 @@ const createCommentService = async (
     });
 
     const idComment = await commentRepository.save(createComment);
+    console.log("ai", idComment)
 
     const createPageContent = pageContentRepository.create({
         comments: idComment,
