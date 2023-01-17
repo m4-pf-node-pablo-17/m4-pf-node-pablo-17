@@ -1,5 +1,7 @@
 import {
   IUserLogin,
+  IUserRequest,
+  IUserResponse,
   IUserUpdate,
 } from '../../../interfaces/user/userInterface';
 
@@ -33,6 +35,27 @@ const mockedListUsers = [
   },
 ];
 
+const mockedUser: IUserRequest = {
+  image: 'https://source.unsplash.com/random',
+  name: 'Sakura Kinomoto',
+  email: 'sakurakawaii@mail.com',
+  password: 'mahoushoujo1',
+  contact: '85995130224',
+  register: '12682833754',
+  isStore: false,
+};
+
+const mockedUserReponse: Omit<IUserResponse, 'id' | 'createdAt' | 'updatedAt'> =
+  {
+    image: 'https://source.unsplash.com/random',
+    name: 'Sakura Kinomoto',
+    email: 'sakurakawaii@mail.com',
+    contact: '85995130224',
+    register: '12682833754',
+    isStore: false,
+    isActive: true,
+  };
+
 const mockedLoginUser: IUserLogin = {
   email: 'sakurakawaii@mail.com',
   password: 'mahoushoujo1',
@@ -43,4 +66,10 @@ const mockedUpdatedBodyUser: IUserUpdate = {
   password: 'stonefree6',
 };
 
-export { mockedListUsers, mockedUpdatedBodyUser, mockedLoginUser };
+export {
+  mockedListUsers,
+  mockedUpdatedBodyUser,
+  mockedLoginUser,
+  mockedUser,
+  mockedUserReponse,
+};
