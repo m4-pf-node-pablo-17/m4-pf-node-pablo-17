@@ -9,14 +9,15 @@ import {
 const updateCommentService = async (
   text: ICommentUpdate,
   commentId: string
-): Promise<IComment> => {
-  console.log("ALOU KD VC CONSOLE");
+) => {
   
   const commentRepository = AppDataSource.getRepository(Comment);
 
   const findComment = await commentRepository.findOneBy({
     id: commentId,
   });
+  console.log(findComment)
+  // const { id, text } = findComment
 
   // if (!findComment) {
   //   console.log("TESTE");
