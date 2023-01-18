@@ -25,11 +25,6 @@ describe('/users', () => {
       });
   });
 
-  // beforeEach(async () => {
-  //   const userDB = await userRepository.find();
-  //   await userRepository.remove(userDB);
-  // });
-
   afterAll(async () => {
     await connection.destroy();
   });
@@ -204,7 +199,7 @@ describe('/users', () => {
   });
 
   test('DELETE /users/:id - Must be able to soft delete user', async () => {
-    const createUser = await request(app).post('/users').send(mockedUserDelete);
+    await request(app).post('/users').send(mockedUserDelete);
 
     const loginResponse = await request(app)
       .post('/login')
@@ -223,8 +218,6 @@ describe('/users', () => {
       .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
 
     expect(response.status).toBe(204);
-    // const [users, amount] = await userRepository.findAndCount();
-    // expect(amount).toBe(0);
     expect(findUser.body[0].isActive).toBe(false);
   });
 
