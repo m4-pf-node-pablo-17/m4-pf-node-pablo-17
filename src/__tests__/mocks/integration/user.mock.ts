@@ -45,6 +45,21 @@ const mockedUser: IUserRequest = {
   isStore: false,
 };
 
+const mockedUserDelete: IUserRequest = {
+  image: 'https://source.unsplash.com/random',
+  name: 'Sakura',
+  email: 'sakura@mail.com',
+  password: '123456789',
+  contact: '85995130000',
+  register: '10000000000',
+  isStore: false,
+};
+
+const mockedLoginUserDelete: IUserLogin = {
+  email: 'sakura@mail.com',
+  password: '123456789',
+};
+
 const mockedUserReponse: Omit<IUserResponse, 'id' | 'createdAt' | 'updatedAt'> =
   {
     image: 'https://source.unsplash.com/random',
@@ -92,4 +107,6 @@ export {
   mockedUserReponse,
   mockedCreateNotUserResponse,
   mockedCreateNotUserRequest,
+  mockedUserDelete,
+  mockedLoginUserDelete,
 };

@@ -39,11 +39,6 @@ userRoutes.post(
   createUserController
 );
 
-userRoutes.delete(
-  '/:id',
-  ensureAuthMiddleware,
-  ensureOwnerIsAdmMiddleware,
-  deleteUserController
-);
+userRoutes.delete('/:id', ensureAuthMiddleware, deleteUserController);
 
 export default userRoutes;

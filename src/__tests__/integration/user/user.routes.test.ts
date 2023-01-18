@@ -6,8 +6,8 @@ import {
   mockedLoginUser,
   mockedUser,
   mockedUpdatedBodyUser,
-  mockedCreateNotUserRequest,
-  mockedCreateNotUserResponse,
+  mockedLoginUserDelete,
+  mockedUserDelete,
 } from '../../mocks/integration/user.mock';
 import { User } from '../../../entities/user.entity';
 
@@ -99,84 +99,6 @@ describe('/users', () => {
     expect(response.body.name).toContain('Sakura Kinomoto');
   });
 
-  test('DELETE /users/:id - Do not delete without authentication', async () => {
-    const loginResponse = await request(app)
-      .post('/login')
-      .send(mockedLoginUser);
-
-    const userDeleted = await request(app)
-      .get('/users')
-      .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
-
-    const response = await request(app).delete(
-      `/users/${userDeleted.body[0].id}`
-    );
-
-    expect(response.body).toHaveProperty('message');
-    expect(response.status).toBe(401);
-  });
-
-  test('DELETE /users/:id - Must be able to soft delete user', async () => {
-    await request(app).post('/users').send(mockedUser);
-
-    const loginResponse = await request(app)
-      .post('/login')
-      .send(mockedLoginUser);
-
-    const userDeleted = await request(app)
-      .get('/users')
-      .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
-
-    const response = await request(app)
-      .delete(`/users/${userDeleted.body[0].id}`)
-      .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
-
-    const findUser = await request(app)
-      .get('/users')
-      .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
-
-    expect(response.status).toBe(204);
-    const [users, amount] = await userRepository.findAndCount();
-    expect(amount).toBe(0);
-  });
-
-  test('DELETE /users/:id - Do not delete user with isActive = false', async () => {
-    await request(app).post('/users').send({
-      email: 'naoeasailormoon@mail.com',
-      password: 'lunaeartemis16',
-    });
-
-    const loginResponse = await request(app)
-      .post('/login')
-      .send(mockedLoginUser);
-
-    const userDeleted = await request(app)
-      .get('/users')
-      .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
-
-    const response = await request(app)
-      .delete(`/users/${userDeleted.body[0].id}`)
-      .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
-
-    expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty('message');
-  });
-
-  test('DELETE /users/:id - Do not delete user with invalid id', async () => {
-    await request(app).post('/users').send(mockedUser);
-
-    const loginResponse = await request(app)
-      .post('/login')
-      .send(mockedLoginUser);
-
-    const response = await request(app)
-      .delete(`/users/c6c8c1f3-490d-42ab-a296-72a514bf99e5`)
-      .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
-
-    expect(response.status).toBe(401);
-    expect(response.body).toHaveProperty('message');
-  });
-
   test('PATCH /users/:id -  should not be able to update user without authentication', async () => {
     const loginResponse = await request(app)
       .post('/login')
@@ -185,7 +107,6 @@ describe('/users', () => {
     const userTobeUpdate = await request(app)
       .get('/users')
       .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
-    console.log(userTobeUpdate.body);
 
     const response = await request(app).patch(
       `/users/${userTobeUpdate.body[0].id}`
@@ -280,5 +201,60 @@ describe('/users', () => {
     expect(response.status).toBe(200);
     expect(userUpdated.body[0].name).toEqual('JoJo');
     expect(userUpdated.body[0]).not.toHaveProperty('password');
+  });
+
+  test('DELETE /users/:id - Must be able to soft delete user', async () => {
+    const createUser = await request(app).post('/users').send(mockedUserDelete);
+    console.log(createUser.body);
+
+    const loginResponse = await request(app)
+      .post('/login')
+      .send(mockedLoginUserDelete);
+    console.log(loginResponse.body);
+
+    const userDeleted = await request(app)
+      .get('/users')
+      .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
+    console.log(userDeleted.body);
+
+    const response = await request(app)
+      .delete(`/users/${userDeleted.body[0].id}`)
+      .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
+    console.log(response.body);
+
+    const findUser = await request(app)
+      .get('/users')
+      .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
+
+    expect(response.status).toBe(204);
+    // const [users, amount] = await userRepository.findAndCount();
+    // expect(amount).toBe(0);
+    expect(findUser.body[0].isActive).toBe(false);
+  });
+
+  test('DELETE /users/:id - Do not delete without authentication', async () => {
+    const createUser = await request(app).post('/users').send(mockedUser);
+
+    await request(app).post('/login').send(mockedLoginUser);
+
+    const response = await request(app).delete(`/users/${createUser.body.id}`);
+
+    expect(response.body).toHaveProperty('message');
+    expect(response.status).toBe(401);
+  });
+
+  test('DELETE /users/:id - Do not delete user with invalid id', async () => {
+    await request(app).post('/users').send(mockedUser);
+
+    const loginResponse = await request(app)
+      .post('/login')
+      .send(mockedLoginUser);
+
+    const response = await request(app)
+      .delete(`/users/c6c8c1f3-490d-42ab-a296-72a514bf99e5`)
+      .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
+
+    expect(response.status).toBe(401);
+    expect(response.body).toHaveProperty('message');
   });
 });

@@ -11,18 +11,15 @@ const deleteUserService = async (idUser: string) => {
     throw new AppError('User not found', 404);
   }
 
-  if (!findUser?.isActive) {
-    throw new AppError('inactive user', 400);
+  const findUserDelete = findUser.isActive;
+
+  if (!findUserDelete) {
+    throw new AppError('isActive user', 400);
   }
 
-  await userRepository.softRemove(findUser);
+  const deletedUser = await userRepository.update(idUser, { isActive: false });
 
-  const respUserDeleted = await userRepository.save({
-    ...findUser,
-    isActive: false,
-  });
-
-  return respUserDeleted;
+  return deletedUser;
 };
 
 export { deleteUserService };
