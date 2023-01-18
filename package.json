@@ -9,7 +9,8 @@
     "build": "tsc",
     "start": "node dist/src/server.js",
     "typeorm": "typeorm-ts-node-commonjs",
-    "test": "cross-env NODE_ENV=test SECRET_KEY=secret_key jest --verbose --runInBand"
+    "test": "cross-env NODE_ENV=test SECRET_KEY=secret_key jest --verbose --runInBand",
+    "products": "yarn test src/__tests__/integration/products/listAllProducts.spec.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.15",

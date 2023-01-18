@@ -1,5 +1,6 @@
 import {
   IUserLogin,
+  IUserRequest,
   IUserUpdate,
 } from '../../../interfaces/user/userInterface';
 
@@ -43,4 +44,14 @@ const mockedUpdatedBodyUser: IUserUpdate = {
   password: 'stonefree6',
 };
 
-export { mockedListUsers, mockedUpdatedBodyUser, mockedLoginUser };
+const mockedCreateUser: IUserRequest = {
+	image: "fotinha",
+  name: "SddsHeroku",
+  email: "SddsHeroku@gmail.com",
+  password: "123456",
+  contact: "1234",
+  register: "fisico",
+  isStore: false
+}
+
+export { mockedListUsers, mockedUpdatedBodyUser, mockedLoginUser, mockedCreateUser };
