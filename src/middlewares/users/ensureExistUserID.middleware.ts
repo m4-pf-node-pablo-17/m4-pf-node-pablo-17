@@ -8,12 +8,20 @@ const ensureExistUserIDMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  const userRepository = AppDataSource.getRepository(User);
+  // const userRepository = AppDataSource.getRepository(User);
 
-  const ensureExistId = await userRepository.findOneBy({ id: req.params.id });
+  // const ensureExistId = await userRepository.findOneBy({ id: req.params.id });
 
-  if (!ensureExistId) {
-    throw new AppError('User not exist', 401);
+
+  // if (!ensureExistId) {
+  //   throw new AppError('User not exist', 401);
+  // }
+
+  const user = req.user.id;
+
+  if (!user) {
+    throw new AppError('User not found', 404);
+
   }
 
   next();
