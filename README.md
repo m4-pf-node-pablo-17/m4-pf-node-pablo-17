@@ -387,7 +387,9 @@ Nessa aplicação o usuário após fazer o login ou se cadastrar pode ver usuár
 
 `GET /products/users/:id - FORMATO DA RESPOSTA - STATUS 201`
 
+```json
 no body returned for response
+```
 
 ## Rota para buscar um produto pelo id: 
 
