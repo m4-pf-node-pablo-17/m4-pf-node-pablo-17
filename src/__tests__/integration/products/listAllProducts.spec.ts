@@ -106,19 +106,60 @@ describe('Tests for list all products function', () => {
 
         expect(response.status).toBe(200)
         expect(response.body).toEqual(
-                expect.objectContaining({
-                    isActive: expect.any(Boolean),
-                    updatedAt: expect.any(String),
-                    createdAt: expect.any(String),
-                    quantity: expect.any(Number),
-                    price: expect.any(Number),
-                    image: expect.any(String),
-                    description: expect.any(String),
-                    name: expect.any(String),
-                    id: expect.any(String)
-                })
+            expect.objectContaining({
+                isActive: expect.any(Boolean),
+                updatedAt: expect.any(String),
+                createdAt: expect.any(String),
+                quantity: expect.any(Number),
+                price: expect.any(Number),
+                image: expect.any(String),
+                description: expect.any(String),
+                name: expect.any(String),
+                id: expect.any(String)
+            })
         )
     })
 
-    // it('Should be not be able to list users | missing token')
+    test('GET /products/users/:id - Must be able to list all products by user', async () => {
+        await request(app)
+        .post('/users')
+        .send(mockedCreateUser)
+
+        const userLoginResponse = await request(app)
+        .post('/login')
+        .send(mockedLoginProductUser)
+
+        const token = `Bearer ${userLoginResponse.body.tokenUser}`
+
+        await request(app)
+        .post('/products')
+        .set('Authorization', token)
+        .send(mockedProductRequest)
+
+        const user = await request(app)
+        .get('/users')
+        .set('Authorization', token) 
+
+        const response = await request(app)
+        .get(`/products/users/${user.body[0].id}`)
+        .set('Authorization', token)   
+
+        expect(response.status).toBe(200)
+        expect(response.body).toHaveLength(1)
+        expect(response.body).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                isActive: expect.any(Boolean),
+                updatedAt: expect.any(String),
+                createdAt: expect.any(String),
+                quantity: expect.any(Number),
+                price: expect.any(Number),
+                image: expect.any(String),
+                description: expect.any(String),
+                name: expect.any(String),
+                id: expect.any(String)
+                })
+            ])
+        )
+    })
 })
