@@ -156,7 +156,111 @@ Nessa aplicação o usuário após fazer o login ou se cadastrar pode ver usuár
 
 ```json
   "No body returned for response"
-
 ```
+
+## Rota para criar uma postagem: 
+
+`POST /posts - FORMATO DA RESPOSTA - STATUS 201`
+
+```json
+{
+	"title": "titulo teste3",
+	"text": "texto teste3",
+	"user": {
+		"id": "103de9fc-d458-4b8a-a45a-da344c0e0f50",
+		"image": "fotinha",
+		"name": "nicollyy",
+		"email": "nicoly@gmail.com",
+		"contact": "1234",
+		"register": "fisico",
+		"isStore": false,
+		"isActive": true,
+		"createdAt": "2023-01-18T20:35:40.572Z",
+		"updatedAt": "2023-01-18T20:35:40.572Z"
+	},
+	"image": null,
+	"deletedAt": null,
+	"id": "421d8a95-82af-44db-8d6b-db78f45137f0",
+	"createdAt": "2023-01-18T20:52:16.732Z",
+	"updatedAt": "2023-01-18T20:52:16.732Z"
+}
+```
+
+## Rota para buscar todas postagens: 
+
+`GET /posts - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+[
+	{
+		"id": "54559ecf-0189-4c50-b98a-aa7df6d47186",
+		"image": null,
+		"title": "titulo teste1",
+		"text": "texto teste1",
+		"createdAt": "2023-01-18T20:51:56.532Z",
+		"updatedAt": "2023-01-18T20:51:56.532Z",
+		"deletedAt": null
+	},
+	{
+		"id": "75d44400-4728-4dd0-bfb3-c3320bb6e028",
+		"image": null,
+		"title": "titulo teste2",
+		"text": "texto teste2",
+		"createdAt": "2023-01-18T20:52:09.497Z",
+		"updatedAt": "2023-01-18T20:52:09.497Z",
+		"deletedAt": null
+	},
+	{
+		"id": "421d8a95-82af-44db-8d6b-db78f45137f0",
+		"image": null,
+		"title": "titulo teste3",
+		"text": "texto teste3",
+		"createdAt": "2023-01-18T20:52:16.732Z",
+		"updatedAt": "2023-01-18T20:52:16.732Z",
+		"deletedAt": null
+	}
+]
+```
+
+## Rota para buscar uma postagem pelo id: 
+
+`GET /posts/:id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+	"id": "75d44400-4728-4dd0-bfb3-c3320bb6e028",
+	"image": null,
+	"title": "titulo teste2",
+	"text": "texto teste2",
+	"createdAt": "2023-01-18T20:52:09.497Z",
+	"updatedAt": "2023-01-18T20:52:09.497Z",
+	"deletedAt": null
+}
+```
+
+## Rota para editar uma postagem: 
+
+`PATCH /posts/:id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+	"id": "75d44400-4728-4dd0-bfb3-c3320bb6e028",
+	"image": null,
+	"title": "titulo teste2",
+	"text": "texto teste2",
+	"createdAt": "2023-01-18T20:52:09.497Z",
+	"updatedAt": "2023-01-18T20:52:09.497Z",
+	"deletedAt": null
+}
+```
+
+## Rota para deletar uma postagem: 
+
+`DELETE /posts/:id - FORMATO DA RESPOSTA - STATUS 204`
+
+```json
+  "No body returned for response"
+```
+
 
 
