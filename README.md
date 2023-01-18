@@ -364,6 +364,7 @@ Nessa aplicação o usuário após fazer o login ou se cadastrar pode ver usuár
 
 `POST /products - FORMATO DA RESPOSTA - STATUS 201`
 
+```json
 {
 	"isActive": true,
 	"updatedAt": "2023-01-18T23:05:49.768Z",
@@ -375,13 +376,15 @@ Nessa aplicação o usuário após fazer o login ou se cadastrar pode ver usuár
 	"name": "teste",
 	"id": "45848ed2-77dd-43a6-9ad8-4f7f09e0157e"
 }
+```
 
 ## Rota para buscar todos produtos: 
 
 `GET /products/users/:id - FORMATO DA RESPOSTA - STATUS 201`
 
-"message": "Erro interno no servidor"
-
+```json
+message": "Erro interno no servidor
+```
 
 ## Rota para buscar todos produtos de um usuário: 
 
@@ -432,7 +435,7 @@ no body returned for response
 `DELETE /products/:id - FORMATO DA RESPOSTA - STATUS 204`
 
 ```json
-No body returned for response 
+"No body returned for response" 
 ```
 
 
