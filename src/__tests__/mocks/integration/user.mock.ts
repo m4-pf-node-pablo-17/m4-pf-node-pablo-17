@@ -66,10 +66,30 @@ const mockedUpdatedBodyUser: IUserUpdate = {
   password: 'stonefree6',
 };
 
+const mockedCreateNotUserResponse = {
+  error: [
+    'image is a required field',
+    'name is a required field',
+    'isStore is a required field',
+  ],
+};
+
+const mockedCreateNotUserRequest: Omit<
+  IUserRequest,
+  'name' | 'isStore' | 'image'
+> = {
+  email: 'sddsHeroku@gmail.com',
+  password: 'sdds123',
+  contact: '40028922',
+  register: '1654645',
+};
+
 export {
   mockedListUsers,
   mockedUpdatedBodyUser,
   mockedLoginUser,
   mockedUser,
   mockedUserReponse,
+  mockedCreateNotUserResponse,
+  mockedCreateNotUserRequest,
 };
