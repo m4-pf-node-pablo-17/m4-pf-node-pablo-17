@@ -196,9 +196,19 @@ describe('/products', () => {
         const token = `Bearer ${userLoginResponse.body.tokenUser}`
         await request(app).post('/products').set('Authorization', token).send(mockedProductRequest)
         
-        const productTobeUpdateRequest = await request(app).get('/products').set('Authorization', token)
-        const response = await request(app).patch(`/products/${productTobeUpdateRequest.body[0].id}`).set('Authorization', token).send(updatedProductValues)
-        const productUpdated = await request(app).get(`/products/${response.body.id}`).set('Authorization', token)
+        const productTobeUpdateRequest = await request(app)
+            .get("/products")
+            .set("Authorization", token)
+        const productTobeUpdateId = productTobeUpdateRequest.body[0].id
+
+        const response = await request(app)
+            .patch(`/products/${productTobeUpdateId}`)
+            .set("Authorization", token)
+            .send(updatedProductValues)
+
+        const productUpdated = await request(app)
+            .get("/products")
+            .set("Authorization", token)
 
         expect(response.status).toBe(200)
         expect(productUpdated.body.name).toEqual('Carrinho Infantil')
@@ -238,6 +248,9 @@ describe('/products', () => {
         const productTobeDeletedRequest = await request(app).get('/products').set('Authorization', token)
 
         const response = await request(app).delete(`/products/${productTobeDeletedRequest.body[0].id}`).set('Authorization', token)
+        const response = await request(app)
+            .delete(`/products/${productTobeDeletedRequest.body[0].id}`)
+            .set("Authorization", token)
 
         expect(response.status).toBe(204)  
     })
