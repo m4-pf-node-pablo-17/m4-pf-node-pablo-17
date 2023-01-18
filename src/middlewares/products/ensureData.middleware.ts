@@ -13,7 +13,6 @@ const ensureDataMiddleware = (schema: AnySchema) => async (req: Request, res: Re
         return next()
         
     } catch (error: any) {
-        console.log(error.errors[0])
         return res.status(400).json({ message: error.errors[0] })
     }
 }
