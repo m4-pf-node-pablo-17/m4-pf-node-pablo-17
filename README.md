@@ -262,5 +262,103 @@ Nessa aplicação o usuário após fazer o login ou se cadastrar pode ver usuár
   "No body returned for response"
 ```
 
+## Rota para criar um comentário em uma postagem: 
+
+`POST /message/:id - FORMATO DA RESPOSTA - STATUS 201`
+
+```json
+{
+	"post": {
+		"id": "75d44400-4728-4dd0-bfb3-c3320bb6e028",
+		"image": null,
+		"title": "titulo teste2",
+		"text": "texto teste2",
+		"createdAt": "2023-01-18T20:52:09.497Z",
+		"updatedAt": "2023-01-18T20:52:09.497Z",
+		"deletedAt": null
+	},
+	"comments": {
+		"id": "fdb37468-f98f-4847-ab9b-b060ee90c0ed",
+		"text": "texto teste",
+		"createdAt": "2023-01-18T22:42:21.435Z",
+		"updatedAt": "2023-01-18T22:42:21.435Z",
+		"deletedAt": null,
+		"user": {
+			"id": "103de9fc-d458-4b8a-a45a-da344c0e0f50",
+			"image": "fotinha",
+			"name": "nicollyy",
+			"email": "nicoly@gmail.com",
+			"password": "$2a$10$NdrGxxelUtVUt2aGgP8ix.l.HgRFd.pvEf6HbPbe4Mr9FaObmgpfK",
+			"contact": "1234",
+			"register": "fisico",
+			"isStore": false,
+			"isActive": true,
+			"createdAt": "2023-01-18T20:35:40.572Z",
+			"updatedAt": "2023-01-18T20:35:40.572Z",
+			"deletedAt": null
+		}
+	},
+	"id": "c087d8cb-dac9-4d6c-a005-9d94f35a3df1"
+}
+```
+
+## Rota para buscar todos comentários de uma postagem: 
+
+`GET /message/:id/posts - FORMATO DA RESPOSTA - STATUS 201`
+
+```json
+[
+	{
+		"comments_id": "fdb37468-f98f-4847-ab9b-b060ee90c0ed",
+		"comments_text": "texto teste",
+		"comments_createdAt": "2023-01-18T22:42:21.435Z",
+		"comments_updatedAt": "2023-01-18T22:42:21.435Z",
+		"comments_deletedAt": null,
+		"comments_userId": "103de9fc-d458-4b8a-a45a-da344c0e0f50",
+		"id_post": "75d44400-4728-4dd0-bfb3-c3320bb6e028"
+	},
+	{
+		"comments_id": "5d0a0251-d5e5-40d8-a3d0-53957de3e9f2",
+		"comments_text": "texto teste 1",
+		"comments_createdAt": "2023-01-18T22:49:16.473Z",
+		"comments_updatedAt": "2023-01-18T22:49:16.473Z",
+		"comments_deletedAt": null,
+		"comments_userId": "103de9fc-d458-4b8a-a45a-da344c0e0f50",
+		"id_post": "75d44400-4728-4dd0-bfb3-c3320bb6e028"
+	},
+	{
+		"comments_id": "90f3557e-73f6-4b2d-b064-350c7d84973e",
+		"comments_text": "texto teste 3",
+		"comments_createdAt": "2023-01-18T22:49:41.376Z",
+		"comments_updatedAt": "2023-01-18T22:49:41.376Z",
+		"comments_deletedAt": null,
+		"comments_userId": "103de9fc-d458-4b8a-a45a-da344c0e0f50",
+		"id_post": "75d44400-4728-4dd0-bfb3-c3320bb6e028"
+	}
+]
+```
+
+## Rota para editar um comentário de uma postagem: 
+
+`PATCH /message/:id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+	"id": "90f3557e-73f6-4b2d-b064-350c7d84973e",
+	"text": "teste novo",
+	"createdAt": "2023-01-18T22:49:41.376Z",
+	"updatedAt": "2023-01-18T22:58:01.684Z",
+	"deletedAt": null
+}
+```
+
+## Rota para deletar um comentário de uma postagem: 
+
+`DELETE /message/:id - FORMATO DA RESPOSTA - STATUS 204`
+
+```json
+No body returned for response
+```
+
 
 
