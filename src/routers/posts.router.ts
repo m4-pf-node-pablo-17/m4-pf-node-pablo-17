@@ -6,13 +6,27 @@ import {
     newPostController,
     updatePostController,
 } from '../controllers/posts.controller';
+import ensureDataMiddleware from '../middlewares/products/ensureData.middleware';
+import ensureAuthMiddleware from '../middlewares/users/ensureAuth.middleware';
+import { respPostsSchema } from '../schemas/posts/schemaPosts';
+import { updateSchema } from '../schemas/user/schemaUser';
 
 const postsRoutes = Router();
 
-postsRoutes.get('', listPostsController);
-postsRoutes.post('', newPostController);
-postsRoutes.get('/:id', listPostByIdController);
-postsRoutes.patch('/:id', updatePostController);
-postsRoutes.delete('/:id', deletePostController);
+postsRoutes.get('', ensureAuthMiddleware, listPostsController);
+postsRoutes.post(
+    '',
+    ensureAuthMiddleware,
+    ensureDataMiddleware(respPostsSchema),
+    newPostController
+);
+postsRoutes.get('/:id', ensureAuthMiddleware, listPostByIdController);
+postsRoutes.patch(
+    '/:id',
+    ensureAuthMiddleware,
+    ensureDataMiddleware(updateSchema),
+    updatePostController
+);
+postsRoutes.delete('/:id', ensureAuthMiddleware, deletePostController);
 
 export default postsRoutes;

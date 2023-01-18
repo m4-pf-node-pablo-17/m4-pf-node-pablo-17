@@ -1,16 +1,16 @@
-import { instanceToPlain } from "class-transformer";
-import { Request, Response } from "express";
+import { instanceToPlain } from 'class-transformer';
+import { Request, Response } from 'express';
 import {
   IUserLogin,
   IUserRequest,
   IUserUpdate,
-} from "../interfaces/user/userInterface";
-import { createUserService } from "../services/users/createUser.service";
-import { deleteUserService } from "../services/users/deleteUser.service";
-import listUsersService from "../services/users/listUser.service";
-import { listUserIDService } from "../services/users/listUserID.service";
-import { loginUserService } from "../services/users/loginUser.service";
-import updateUserService from "../services/users/updateUser.service";
+} from '../interfaces/user/userInterface';
+import { createUserService } from '../services/users/createUser.service';
+import { deleteUserService } from '../services/users/deleteUser.service';
+import listUsersService from '../services/users/listUser.service';
+import { listUserIDService } from '../services/users/listUserID.service';
+import { loginUserService } from '../services/users/loginUser.service';
+import updateUserService from '../services/users/updateUser.service';
 
 const listUsersController = async (req: Request, res: Response) => {
   const users = await listUsersService();
@@ -27,7 +27,9 @@ const updateUserController = async (req: Request, res: Response) => {
   const userData: IUserUpdate = req.body;
   const userId = req.params.id;
   const updatedUser = await updateUserService(userData, userId);
-  return res.status(200).json(updatedUser);
+  return res.status(200).json({
+    message: updatedUser,
+  });
 };
 
 const createUserController = async (req: Request, res: Response) => {

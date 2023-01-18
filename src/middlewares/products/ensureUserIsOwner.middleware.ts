@@ -1,7 +1,6 @@
 import { AppError } from './../../errors/appError';
 import { AppDataSource } from './../../data-source';
 import { NextFunction, Request, Response } from 'express';
-import { User } from '../../entities/user.entity';
 import { Product } from '../../entities/products.entities';
 
 const ensureUserIsOwnerMiddleware = async (
