@@ -44,10 +44,13 @@ const mockedComment = {
 		id_post: "1"
 }
 
+const updatedComment = {
+    text: "olá, tudo bem?"
+}
 
 const mockedLoginCommentUser: IUserLogin = {
     email: 'SddsHeroku@gmail.com',
     password: '123456',
 };
 
-export { mockedListComments, mockedLoginCommentUser, mockedComment, mockedCommentRequest }
+export { mockedListComments, mockedLoginCommentUser, mockedComment, mockedCommentRequest, updatedComment }
