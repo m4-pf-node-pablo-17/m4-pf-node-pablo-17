@@ -36,9 +36,9 @@ Este é o backend da aplicação Imami - Feita para mães de primeira viagem, qu
 
 A API tem um total de 21 endpoints - podendo cadastrar seu perfil, produtos, fazer postagens e comentários. <br/>
 
-baseUrl da API: <urlBASE aqui!>
+baseUrl da API: [<Url Base>](https://imomi.onrender.com)
 
-## Todas rotas, exceto cadatro, necessitam de autenticação
+## Todas rotas, exceto cadastro, necessitam de autenticação
 
 Rotas que necessitam de autorização deve ser informado no cabeçalho da requisição o campo "Authorization", dessa forma:
 
