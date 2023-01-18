@@ -425,7 +425,7 @@ no body returned for response
 }
 ```
 
-## Rota para editar um produto: 
+## Rota para deletar um produto: 
 
 `DELETE /products/:id - FORMATO DA RESPOSTA - STATUS 204`
 
