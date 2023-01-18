@@ -1,8 +1,6 @@
 import { AppDataSource } from '../../data-source';
 import { Comment } from '../../entities/comment.entity';
-import { AppError } from '../../errors/appError';
 import {
-  IComment,
   ICommentUpdate,
 } from '../../interfaces/comment/commentInterface';
 
