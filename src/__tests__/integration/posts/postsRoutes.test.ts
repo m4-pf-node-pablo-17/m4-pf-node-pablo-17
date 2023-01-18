@@ -38,19 +38,6 @@ describe('/posts', () => {
         const loginResponse = await request(app).post("/login").send(mockedLoginCommentUser);
         const token = `Bearer ${loginResponse.body.tokenUser}`
         const post = await request(app).post("/posts").set('Authorization', token).send(mockedPost1)
-        
-
-        console.log(post.body);
-        
-        /* const posts = await request(app).get('/posts');
-        const adminLoginResponse = await request(app)
-            .post('/login')
-            .send(mockedLoginUser);
-        mockedPost1.id = posts.body[0].id;
-        const response = await request(app)
-            .post('/posts')
-            .set('Authorization', `Bearer ${adminLoginResponse.body.token}`)
-            .send(mockedPost1); */
 
         expect(post.body).toHaveProperty('title');
         expect(post.body).toHaveProperty('text');
@@ -92,19 +79,6 @@ describe('/posts', () => {
         expect(response.status).toBe(401);
     });
 
-    // test('POST /posts - should not be able to create category not being admin', async () => {
-    //     const userLoginResponse = await request(app)
-    //         .post('/login')
-    //         .send(mockedLoginUser);
-    //     const response = await request(app)
-    //         .post('/posts')
-    //         .set('Authorization', `Bearer ${userLoginResponse.body.token}`)
-    //         .send(mockedPost1);
-
-    //     expect(response.body).toHaveProperty('message');
-    //     expect(response.status).toBe(403);
-    // });
-
     test('GET /posts -  Must be able to list all posts', async () => {
         const response = await request(app).get('/posts');
         expect(response.body).toHaveLength(1);
@@ -125,12 +99,4 @@ describe('/posts', () => {
         expect(response.body).toHaveProperty('updatedAt');
         expect(response.body).toHaveProperty('deletedAt');
     });
-
-    // test('GET /posts/:id -  Should not be able to list properties of a category with invalid id', async () => {
-    //     const response = await request(app).get(
-    //         `/posts/13970660-5dbe-423a-9a9d-5c23b37943cf/properties`
-    //     );
-    //     expect(response.body).toHaveProperty('message');
-    //     expect(response.status).toBe(404);
-    // });
 });

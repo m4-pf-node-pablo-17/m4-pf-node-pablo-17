@@ -1,11 +1,8 @@
-import { sign } from "jsonwebtoken"
 import request from "supertest"
 import { DataSource, Repository } from "typeorm"
 import { app } from "../../../app"
 import { AppDataSource } from "../../../data-source"
 import { Product } from "../../../entities/products.entities"
-import { User } from "../../../entities/user.entity"
-import { IUpdateProduct } from "../../../interfaces/products"
 import { mockedLoginProductUser, mockedProductInvalidRequest, mockedProductRequest, updatedProductValues } from "../../mocks/integration/products.mock"
 import { mockedCreateUser } from "../../mocks/integration/user.mock"
 
