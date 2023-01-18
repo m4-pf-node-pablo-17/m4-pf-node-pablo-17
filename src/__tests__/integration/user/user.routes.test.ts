@@ -205,22 +205,18 @@ describe('/users', () => {
 
   test('DELETE /users/:id - Must be able to soft delete user', async () => {
     const createUser = await request(app).post('/users').send(mockedUserDelete);
-    console.log(createUser.body);
 
     const loginResponse = await request(app)
       .post('/login')
       .send(mockedLoginUserDelete);
-    console.log(loginResponse.body);
 
     const userDeleted = await request(app)
       .get('/users')
       .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
-    console.log(userDeleted.body);
 
     const response = await request(app)
       .delete(`/users/${userDeleted.body[0].id}`)
       .set('Authorization', `Bearer ${loginResponse.body.tokenUser}`);
-    console.log(response.body);
 
     const findUser = await request(app)
       .get('/users')
