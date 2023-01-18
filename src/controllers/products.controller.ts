@@ -16,7 +16,7 @@ const createProductController = async (req: Request, res: Response) => {
             price, 
             quantity,
     }: IProductRequest = req.body
-    const userId      = req.user.id
+    const userId       = req.user.id
     
     const createdProduct = await createProductService({
         name,
