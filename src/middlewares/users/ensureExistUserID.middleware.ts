@@ -13,7 +13,7 @@ const ensureExistUserIDMiddleware = async (
   const ensureExistId = await userRepository.findOneBy({ id: req.params.id });
 
   if (!ensureExistId) {
-    throw new AppError('User not exist', 400);
+    throw new AppError('User not exist', 401);
   }
 
   next();

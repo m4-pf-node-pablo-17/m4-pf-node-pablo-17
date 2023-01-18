@@ -16,7 +16,6 @@ const updateCommentService = async (
   const findComment = await commentRepository.findOneBy({
     id: commentId,
   });
-  console.log(findComment)
   // const { id, text } = findComment
 
   // if (!findComment) {

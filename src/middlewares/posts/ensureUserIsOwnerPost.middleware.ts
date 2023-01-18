@@ -11,10 +11,8 @@ const ensureUserIsOwnerOfPostMiddleware = async (
     const postRepository = AppDataSource.getRepository(Post);
 
     const ensurePostId = await postRepository.findOneBy({ id: req.params.userId });
-    console.log(ensurePostId);
 
     const userId = req.body.userId;
-console.log(userId);
 
     if (ensurePostId?.user.id !== userId) {
         throw new AppError('You are not allowed to do this', 401);
