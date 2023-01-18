@@ -23,7 +23,6 @@ export const errorIdentify = async (
     return resp.status(404).json({ message: error.message });
   }
 
-  console.log(error.message);
 
   return resp.status(500).json({ message: "Erro interno no servidor" });
 };

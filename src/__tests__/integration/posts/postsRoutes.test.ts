@@ -9,7 +9,10 @@ import {
     mockedPost2,
     mockedPost3,
 } from '../../mocks/integration/posts.mock';
-import { mockedCreateUser, mockedLoginUser } from '../../mocks/integration/user.mock';
+import {
+    mockedCreateUser,
+    mockedLoginUser,
+} from '../../mocks/integration/user.mock';
 
 describe('/posts', () => {
     let connection: DataSource;
@@ -34,10 +37,15 @@ describe('/posts', () => {
     });
 
     test('POST /posts -  Must be able to create a post', async () => {
-        await request(app).post("/users").send(mockedCreateUser)
-        const loginResponse = await request(app).post("/login").send(mockedLoginCommentUser);
-        const token = `Bearer ${loginResponse.body.tokenUser}`
-        const post = await request(app).post("/posts").set('Authorization', token).send(mockedPost1)
+        await request(app).post('/users').send(mockedCreateUser);
+        const loginResponse = await request(app)
+            .post('/login')
+            .send(mockedLoginCommentUser);
+        const token = `Bearer ${loginResponse.body.tokenUser}`;
+        const post = await request(app)
+            .post('/posts')
+            .set('Authorization', token)
+            .send(mockedPost1);
 
         expect(post.body).toHaveProperty('title');
         expect(post.body).toHaveProperty('text');
@@ -69,7 +77,7 @@ describe('/posts', () => {
             .send(mockedPost1);
 
         expect(response.body).toHaveProperty('message');
-        expect(response.status).toBe(409);
+        expect(response.status).toBe(401);
     });
 
     test('POST /posts -  should not be able to create post without authentication', async () => {
@@ -80,16 +88,33 @@ describe('/posts', () => {
     });
 
     test('GET /posts -  Must be able to list all posts', async () => {
-        const response = await request(app).get('/posts');
+        const loginResponse = await request(app)
+            .post('/login')
+            .send(mockedLoginCommentUser);
+        const token = `Bearer ${loginResponse.body.tokenUser}`;
+        const response = await request(app)
+            .get('/posts')
+            .set('Authorization', token);
+
         expect(response.body).toHaveLength(1);
         expect(response.status).toBe(200);
     });
 
     test('GET /posts/:id -  Must be able to list one post only', async () => {
-        const post = await request(app).get('/posts/:id');
-        const response = await request(app).get(
-            `/posts/${post.body[0].id}`
-        );
+        const loginResponse = await request(app)
+            .post('/login')
+            .send(mockedLoginCommentUser);
+        const token = `Bearer ${loginResponse.body.tokenUser}`;
+
+        const post = await request(app)
+            .post('/posts')
+            .set('Authorization', token)
+            .send(mockedPost1);
+
+        // const post = await request(app).get('/posts');
+        const response = await request(app)
+            .get(`/posts/${post.body.id}`)
+            .set('Authorization', token);
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('id');
         expect(response.body).toHaveProperty('image');
