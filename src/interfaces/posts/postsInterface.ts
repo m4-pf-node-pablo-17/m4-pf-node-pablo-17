@@ -9,7 +9,7 @@ export interface IPosts {
 }
 
 export interface IPostsRequest {
-    id: string
+    id: string;
     image?: string;
     title: string;
     text: string;

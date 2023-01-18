@@ -1,18 +1,18 @@
-import { Request, Response, NextFunction } from "express";
-import { AppError } from "../../errors/appError";
+import { NextFunction, Request, Response } from 'express';
+import { AppError } from '../../errors/appError';
 
 const ensureIsAdmMiddleware = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
+    req: Request,
+    res: Response,
+    next: NextFunction
 ) => {
-  const isStore = req.user.isStore;
+    const isStore = req.user.isStore;
 
-  if (!isStore) {
-    throw new AppError("User is not store", 403);
-  }
+    if (!isStore) {
+        throw new AppError('User is not store', 403);
+    }
 
-  return next();
+    return next();
 };
 
 export default ensureIsAdmMiddleware;

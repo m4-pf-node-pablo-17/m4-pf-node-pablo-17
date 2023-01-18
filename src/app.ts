@@ -1,13 +1,13 @@
-import "reflect-metadata";
-import "express-async-errors";
-import express from "express";
+import express from 'express';
+import 'express-async-errors';
+import 'reflect-metadata';
 
-import { errorIdentify } from "./errors/appError";
-import userRoutes from "./routers/users.router";
-import { loginRouter } from "./routers/login.router";
-import postsRoutes from './routers/posts.router';
+import { errorIdentify } from './errors/appError';
 import commentRoutes from './routers/comment.router';
+import { loginRouter } from './routers/login.router';
+import postsRoutes from './routers/posts.router';
 import productRouter from './routers/products.router';
+import userRoutes from './routers/users.router';
 
 export const app = express();
 

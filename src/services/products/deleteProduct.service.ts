@@ -1,18 +1,18 @@
-import { AppDataSource } from '../../data-source'
-import { Product } from '../../entities/products.entities'
+import { AppDataSource } from '../../data-source';
+import { Product } from '../../entities/products.entities';
 
 const deleteProductService = async (productId: string): Promise<string> => {
-    const productRepository = AppDataSource.getRepository(Product)
-    
-    const product = await productRepository.findOneBy({ id: productId })
+    const productRepository = AppDataSource.getRepository(Product);
 
-    await productRepository.softRemove(product!)
+    const product = await productRepository.findOneBy({ id: productId });
+
+    await productRepository.softRemove(product!);
     await productRepository.save({
-        ...product, 
-        isActive: false
-    })
-    
-    return 'Product deleted'
-}
+        ...product,
+        isActive: false,
+    });
 
-export default deleteProductService
+    return 'Product deleted';
+};
+
+export default deleteProductService;
