@@ -49,8 +49,114 @@ Após o usuário estar logado, ele deve conseguir visualizar produtos, postagens
 Nessa aplicação o usuário após fazer o login ou se cadastrar pode ver usuários e lojas juntamente com seus produtos já cadastradas na plataforma, na API podemos acessar a lista dessa forma:
 
 ##
-## Rota para buscar usuário e seus produtos cadastrados:
+## Rota para cadastro:
 
-`GET products/users/userId - FORMATO DA RESPOSTA - STATUS 200`
+`POST /users - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+  {
+    "updatedAt": "2023-01-18T19:52:01.205Z",
+    "createdAt": "2023-01-18T19:52:01.205Z",
+    "isActive": true,
+    "isStore": false,
+    "register": "fisico",
+    "contact": "1234",
+    "email": "ni@mail.com",
+    "name": "nicolly",
+    "image": "fotinha",
+    "id": "2bdfb56b-cb87-4761-a13c-6152a52975d7"
+  }
+```
+## Rota para login:
+
+`POST products/login - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+  {
+    "tokenUser": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc1N0b3JlIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTY3NDA3MTIwMiwiZXhwIjoxNjc0MTU3NjAyLCJzdWIiOiJiMTk0ZDY4NS1mYWI3LTQ4ZTMtYWRiYi03MzQ2NzljNmUxNzkifQ.QFFAVWcw3Wn9VgOwesax-Ye0-P6JjFb2Z3OeslUUCV8"
+  }
+```
+
+## Rota para buscar todos usuários:
+
+`GET /users - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+[
+	{
+		"updatedAt": "2023-01-17T21:36:19.319Z",
+		"createdAt": "2023-01-17T21:36:19.319Z",
+		"isActive": true,
+		"isStore": false,
+		"register": "fisico",
+		"contact": "1234",
+		"email": "ninini@gmail.com",
+		"name": "nicollyyyyyyy",
+		"image": "fotinha",
+		"id": "b194d685-fab7-48e3-adbb-734679c6e179"
+	},
+	{
+		"updatedAt": "2023-01-18T19:52:01.205Z",
+		"createdAt": "2023-01-18T19:52:01.205Z",
+		"isActive": true,
+		"isStore": false,
+		"register": "fisico",
+		"contact": "1234",
+		"email": "ni@mail.com",
+		"name": "nicolly",
+		"image": "fotinha",
+		"id": "2bdfb56b-cb87-4761-a13c-6152a52975d7"
+	}
+]
+```
+
+## Rota para buscar um usuários específico: 
+
+`GET /users/:id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+	"updatedAt": "2023-01-17T21:36:19.319Z",
+	"createdAt": "2023-01-17T21:36:19.319Z",
+	"isActive": true,
+	"isStore": false,
+	"register": "fisico",
+	"contact": "1234",
+	"email": "ninini@gmail.com",
+	"name": "nicollyyyyyyy",
+	"image": "fotinha",
+	"id": "b194d685-fab7-48e3-adbb-734679c6e179"
+}
+```
+
+## Rota para editar o usuários logado: 
+
+`PATCH /users/:id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+	"message": {
+		"updatedAt": "2023-01-18T20:00:59.776Z",
+		"createdAt": "2023-01-17T21:36:19.319Z",
+		"isActive": true,
+		"isStore": false,
+		"register": "fisico",
+		"contact": "1234",
+		"email": "nicoly@mail.com",
+		"name": "nicollyalves",
+		"image": "fotinhaaaa",
+		"id": "b194d685-fab7-48e3-adbb-734679c6e179"
+	}
+}
+```
+
+## Rota para deletar um usuários: 
+
+`DELETE /users/:id - FORMATO DA RESPOSTA - STATUS 204`
+
+```json
+  "No body returned for response"
+
+```
 
 
