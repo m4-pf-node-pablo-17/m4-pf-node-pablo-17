@@ -16,7 +16,6 @@ const listPostsController = async (req: Request, res: Response) => {
 const newPostController = async (req: Request, res: Response) => {
     const postData: IPosts = req.body;
     const userId = req.user.id
-    console.log("Oi de novo ", userId)
 
     const newPost = await newPostService(postData, userId);
     return res.status(201).json(newPost);
@@ -31,7 +30,6 @@ const listPostByIdController = async (req: Request, res: Response) => {
 const updatePostController = async (req: Request, res: Response) => {
     const userData: IPostsUpdate = req.body;
     const postId: string = req.params.id;
-
     const updatedPost = await updatePostService(userData, postId);
 
     return res.status(200).json(updatedPost);
