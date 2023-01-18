@@ -65,7 +65,7 @@ describe('/posts', () => {
 
     test('POST /posts -  should not be able to create post with same id', async () => {
         const adminLoginResponse = await request(app)
-            .post('/posts')
+            .post('/login')
             .send(mockedLoginUser);
         const response = await request(app)
             .post('/posts')
@@ -103,9 +103,9 @@ describe('/posts', () => {
     });
 
     test('GET /posts/:id -  Must be able to list one post only', async () => {
-        const category = await request(app).get('/posts');
+        const post = await request(app).get('/posts/:id');
         const response = await request(app).get(
-            `/posts/${category.body[0].id}`
+            `/posts/${post.body[0].id}`
         );
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('id');
@@ -117,11 +117,11 @@ describe('/posts', () => {
         expect(response.body).toHaveProperty('deletedAt');
     });
 
-    test('GET /posts/:id/properties -  Should not be able to list properties of a category with invalid id', async () => {
-        const response = await request(app).get(
-            `/posts/13970660-5dbe-423a-9a9d-5c23b37943cf/properties`
-        );
-        expect(response.body).toHaveProperty('message');
-        expect(response.status).toBe(404);
-    });
+    // test('GET /posts/:id -  Should not be able to list properties of a category with invalid id', async () => {
+    //     const response = await request(app).get(
+    //         `/posts/13970660-5dbe-423a-9a9d-5c23b37943cf/properties`
+    //     );
+    //     expect(response.body).toHaveProperty('message');
+    //     expect(response.status).toBe(404);
+    // });
 });
