@@ -357,8 +357,84 @@ Nessa aplicação o usuário após fazer o login ou se cadastrar pode ver usuár
 `DELETE /message/:id - FORMATO DA RESPOSTA - STATUS 204`
 
 ```json
-No body returned for response
+"No body returned for response"
 ```
+
+## Rota para criar um produto: 
+
+`POST /products - FORMATO DA RESPOSTA - STATUS 201`
+
+{
+	"isActive": true,
+	"updatedAt": "2023-01-18T23:05:49.768Z",
+	"createdAt": "2023-01-18T23:05:49.768Z",
+	"quantity": 1,
+	"price": 10,
+	"image": "fotinha",
+	"description": "teste",
+	"name": "teste",
+	"id": "45848ed2-77dd-43a6-9ad8-4f7f09e0157e"
+}
+
+## Rota para buscar todos produtos: 
+
+`GET /products/users/:id - FORMATO DA RESPOSTA - STATUS 201`
+
+"message": "Erro interno no servidor"
+
+
+## Rota para buscar todos produtos de um usuário: 
+
+`GET /products/users/:id - FORMATO DA RESPOSTA - STATUS 201`
+
+no body returned for response
+
+## Rota para buscar um produto pelo id: 
+
+`GET /products/:id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+	"isActive": true,
+	"updatedAt": "2023-01-18T23:05:49.768Z",
+	"createdAt": "2023-01-18T23:05:49.768Z",
+	"quantity": 1,
+	"price": 10,
+	"image": "fotinha",
+	"description": "teste",
+	"name": "teste",
+	"id": "45848ed2-77dd-43a6-9ad8-4f7f09e0157e"
+}
+```
+
+## Rota para editar um produto: 
+
+`PATCH /products/:id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+	"isActive": true,
+	"updatedAt": "2023-01-18T23:32:10.543Z",
+	"createdAt": "2023-01-18T23:05:49.768Z",
+	"quantity": 2,
+	"price": 11,
+	"image": "fotinha",
+	"description": "teste editado",
+	"name": "teste editado",
+	"id": "45848ed2-77dd-43a6-9ad8-4f7f09e0157e"
+}
+```
+
+## Rota para editar um produto: 
+
+`DELETE /products/:id - FORMATO DA RESPOSTA - STATUS 204`
+
+```json
+No body returned for response 
+```
+
+
+
 
 
 
