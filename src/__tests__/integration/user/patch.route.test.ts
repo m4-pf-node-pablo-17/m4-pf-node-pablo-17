@@ -17,14 +17,14 @@ describe('Change the user_data route tests', () => {
     await AppDataSource.initialize()
       .then(async (res) => {
         conn = res;
-        const userRepo = res.getRepository(User);
-        for await (const user of mockedUpdatedBodyUser) {
-          const mockedUser = userRepo.create({
-            ...user,
-            password: 'testing',
-          });
-          await userRepo.save(mockedUser);
-        }
+        // const userRepo = res.getRepository(User);
+        // for await (const user of mockedUpdatedBodyUser) {
+        //   const mockedUser = userRepo.create({
+        //     ...user,
+        //     password: 'testing',
+        //   });
+        //   await userRepo.save(mockedUser);
+        // }
       })
       .catch((err) => console.error(err));
   });
