@@ -10,4 +10,4 @@ const listPostsService = async (): Promise<IPosts[]> => {
     return posts;
 };
 
-export  {listPostsService};
+export { listPostsService };

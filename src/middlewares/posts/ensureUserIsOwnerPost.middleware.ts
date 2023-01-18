@@ -10,7 +10,9 @@ const ensureUserIsOwnerOfPostMiddleware = async (
 ) => {
     const postRepository = AppDataSource.getRepository(Post);
 
-    const ensurePostId = await postRepository.findOneBy({ id: req.params.userId });
+    const ensurePostId = await postRepository.findOneBy({
+        id: req.params.userId,
+    });
 
     const userId = req.body.userId;
 

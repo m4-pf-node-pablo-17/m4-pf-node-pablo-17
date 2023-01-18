@@ -111,7 +111,6 @@ describe('/posts', () => {
             .set('Authorization', token)
             .send(mockedPost1);
 
-        // const post = await request(app).get('/posts');
         const response = await request(app)
             .get(`/posts/${post.body.id}`)
             .set('Authorization', token);

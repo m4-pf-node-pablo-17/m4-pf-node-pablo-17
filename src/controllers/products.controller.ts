@@ -1,80 +1,76 @@
-import { Request, Response } from 'express'
-import { IProductRequest, IUpdateProduct } from '../interfaces/products'
-import createProductService from '../services/products/createProduct.service'
-import deleteProductService from '../services/products/deleteProduct.service'
-import listAllProductsService from '../services/products/listAllProducts.service'
-import listProductByIdService from '../services/products/listProductById.service'
-import listProductsByUserService from '../services/products/listProductsByUser.service'
-import updateProductService from '../services/products/updateProduct.service'
-
+import { Request, Response } from 'express';
+import { IProductRequest, IUpdateProduct } from '../interfaces/products';
+import createProductService from '../services/products/createProduct.service';
+import deleteProductService from '../services/products/deleteProduct.service';
+import listAllProductsService from '../services/products/listAllProducts.service';
+import listProductByIdService from '../services/products/listProductById.service';
+import listProductsByUserService from '../services/products/listProductsByUser.service';
+import updateProductService from '../services/products/updateProduct.service';
 
 const createProductController = async (req: Request, res: Response) => {
-    const {
+    const { name, description, image, price, quantity }: IProductRequest =
+        req.body;
+    const userId = req.user.id;
+
+    const createdProduct = await createProductService(
+        {
             name,
             description,
             image,
-            price, 
+            price,
             quantity,
-    }: IProductRequest = req.body
-    const userId      = req.user.id
-    
-    const createdProduct = await createProductService({
-        name,
-        description,
-        image,
-        price, 
-        quantity,
-   
-    }, userId)
+        },
+        userId
+    );
 
-    return res.status(201).json(createdProduct)
-}
+    return res.status(201).json(createdProduct);
+};
 
 const listAllProductsController = async (req: Request, res: Response) => {
-    const products = await listAllProductsService()
-    
-    return res.status(200).json(products)
-}
+    const products = await listAllProductsService();
 
-const listProductByIdController = async (req: Request, res: Response) => {    
-    const paramsId = req.params.id
+    return res.status(200).json(products);
+};
 
-    const product = await listProductByIdService(paramsId)
+const listProductByIdController = async (req: Request, res: Response) => {
+    const paramsId = req.params.id;
 
-    return res.status(200).json(product)
-}
+    const product = await listProductByIdService(paramsId);
+
+    return res.status(200).json(product);
+};
 
 const listProductsByUserController = async (req: Request, res: Response) => {
-    const paramsId = req.params.id
+    const paramsId = req.params.id;
 
-    const list = await listProductsByUserService(paramsId)
+    const list = await listProductsByUserService(paramsId);
 
-    return res.status(200).json(list)
-}
+    return res.status(200).json(list);
+};
 
 const updateProductController = async (req: Request, res: Response) => {
-    const data: IUpdateProduct = req.body
-    
-    const paramsId = req.params.id
+    const data: IUpdateProduct = req.body;
 
-    const product = await updateProductService(data, paramsId)
-    
-    return res.status(200).json(product)
-}
+    const paramsId = req.params.id;
+
+    const product = await updateProductService(data, paramsId);
+
+    return res.status(200).json(product);
+};
 
 const deleteProductController = async (req: Request, res: Response) => {
-    const paramsId = req.params.id
+    const paramsId = req.params.id;
 
-    const product = await deleteProductService(paramsId)
+    const product = await deleteProductService(paramsId);
 
-    return res.status(204).json(product)
-}
+    return res.status(204).json(product);
+};
 
-export { 
-    listProductsByUserController, 
-    updateProductController, 
+export {
+    listProductsByUserController,
+    updateProductController,
     deleteProductController,
     listAllProductsController,
     createProductController,
-    listProductByIdController
-}
+    listProductByIdController,
+};
