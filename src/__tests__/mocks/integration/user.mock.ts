@@ -45,6 +45,21 @@ const mockedUser: IUserRequest = {
   isStore: false,
 };
 
+const mockedUserDelete: IUserRequest = {
+  image: 'https://source.unsplash.com/random',
+  name: 'Sakura',
+  email: 'sakura@mail.com',
+  password: '123456789',
+  contact: '85995130000',
+  register: '10000000000',
+  isStore: false,
+};
+
+const mockedLoginUserDelete: IUserLogin = {
+  email: 'sakura@mail.com',
+  password: '123456789',
+};
+
 const mockedUserReponse: Omit<IUserResponse, 'id' | 'createdAt' | 'updatedAt'> =
   {
     image: 'https://source.unsplash.com/random',
@@ -66,20 +81,32 @@ const mockedUpdatedBodyUser: IUserUpdate = {
   password: 'stonefree6',
 };
 
-const mockedCreateUser: IUserRequest = {
-	image: "fotinha",
-  name: "SddsHeroku",
-  email: "SddsHeroku@gmail.com",
-  password: "123456",
-  contact: "1234",
-  register: "fisico",
-  isStore: false
-}
+const mockedCreateNotUserResponse = {
+  error: [
+    'image is a required field',
+    'name is a required field',
+    'isStore is a required field',
+  ],
+};
+
+const mockedCreateNotUserRequest: Omit<
+  IUserRequest,
+  'name' | 'isStore' | 'image'
+> = {
+  email: 'sddsHeroku@gmail.com',
+  password: 'sdds123',
+  contact: '40028922',
+  register: '1654645',
+};
 
 export {
   mockedListUsers,
   mockedUpdatedBodyUser,
-  mockedLoginUser, mockedCreateUser,
+  mockedLoginUser,
   mockedUser,
   mockedUserReponse,
+  mockedCreateNotUserResponse,
+  mockedCreateNotUserRequest,
+  mockedUserDelete,
+  mockedLoginUserDelete,
 };

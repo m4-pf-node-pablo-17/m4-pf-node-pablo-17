@@ -14,6 +14,13 @@ const updateCommentService = async (
   const findComment = await commentRepository.findOneBy({
     id: commentId,
   });
+  // const { id, text } = findComment
+
+  // if (!findComment) {
+  //   console.log("TESTE");
+    
+  //   throw new AppError('comment not found1241r51414', 404);
+  // }
 
   const updatedComment = commentRepository.create({
     ...findComment,
