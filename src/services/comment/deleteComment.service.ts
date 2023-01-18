@@ -3,15 +3,17 @@ import { Comment } from '../../entities/comment.entity';
 import { AppError } from '../../errors/appError';
 
 const deleteCommentService = async (commentId: string) => {
-  const getCommentRepository = AppDataSource.getRepository(Comment);
+    const getCommentRepository = AppDataSource.getRepository(Comment);
 
-  const findComment = await getCommentRepository.findOneBy({ id: commentId });
+    const findComment = await getCommentRepository.findOneBy({ id: commentId });
 
-  if (!findComment) {
-    throw new AppError('Comment not found', 404);
-  }
+    if (!findComment) {
+        throw new AppError('Comment not found', 404);
+    }
 
-  return 'Deleted Comment';
+    await getCommentRepository.softRemove(findComment);
+
+    return { message: 'Comment deleted' };
 };
 
 export default deleteCommentService;

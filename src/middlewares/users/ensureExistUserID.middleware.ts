@@ -1,22 +1,18 @@
-import { Request, Response, NextFunction } from 'express';
-import { AppDataSource } from '../../data-source';
-import { User } from '../../entities/user.entity';
+import { NextFunction, Request, Response } from 'express';
 import { AppError } from '../../errors/appError';
 
 const ensureExistUserIDMiddleware = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
+    req: Request,
+    res: Response,
+    next: NextFunction
 ) => {
-  const userRepository = AppDataSource.getRepository(User);
+    const user = req.user.id;
 
-  const ensureExistId = await userRepository.findOneBy({ id: req.params.id });
+    if (!user) {
+        throw new AppError('User not found', 404);
+    }
 
-  if (!ensureExistId) {
-    throw new AppError('User not exist', 400);
-  }
-
-  next();
+    next();
 };
 
 export { ensureExistUserIDMiddleware };

@@ -1,25 +1,25 @@
-import { AppDataSource } from "../../data-source";
-import { User } from "../../entities/user.entity";
+import { AppDataSource } from '../../data-source';
+import { User } from '../../entities/user.entity';
 import {
-  IUserRequest,
-  IUserResponse,
-} from "../../interfaces/user/userInterface";
-import { respUserSchema } from "../../schemas/user/schemaUser";
+    IUserRequest,
+    IUserResponse,
+} from '../../interfaces/user/userInterface';
+import { respUserSchema } from '../../schemas/user/schemaUser';
 
 const createUserService = async (
-  date: IUserRequest
+    date: IUserRequest
 ): Promise<IUserResponse> => {
-  const userRepository = AppDataSource.getRepository(User);
+    const userRepository = AppDataSource.getRepository(User);
 
-  const createUser = userRepository.create(date);
+    const createUser = userRepository.create(date);
 
-  await userRepository.save(createUser);
+    await userRepository.save(createUser);
 
-  const resUser = await respUserSchema.validate(createUser, {
-    stripUnknown: true,
-  });
+    const resUser = await respUserSchema.validate(createUser, {
+        stripUnknown: true,
+    });
 
-  return resUser;
+    return resUser;
 };
 
 export { createUserService };
