@@ -150,15 +150,19 @@ describe('/message', () => {
             .set('Authorization', token)
             .send(mockedPost1);
 
-        const comment = await request(app)
+        await request(app)
             .post(`/message/${post.body.id}`)
             .set('Authorization', token)
             .send(mockedCommentRequest);
+        const messageTobeDeletedRequest = await request(app)
+            .get(`/message/${post.body.id}/posts`)
+            .set('Authorization', token);
 
         const response = await request(app)
-            .delete(`/message/${comment.body.comments.id}`)
+            .delete(`/message/${messageTobeDeletedRequest.body[0].comments_id}`)
             .set('Authorization', token);
 
         expect(response.status).toBe(204);
     });
 });
+

@@ -1,6 +1,5 @@
 import { AppDataSource } from '../../data-source';
 import { Post } from '../../entities/post.entity';
-//import { respCommentFromPostSchema } from '../../schemas/comment/schemaComment';
 
 const listAllMessagesFromPostService = async (postId: string) => {
     const postRepository = AppDataSource.getRepository(Post);
