@@ -380,7 +380,7 @@ Nessa aplicação o usuário após fazer o login ou se cadastrar pode ver usuár
 
 ## Rota para buscar todos produtos: 
 
-`GET /products/ - FORMATO DA RESPOSTA - STATUS 201`
+`GET /products - FORMATO DA RESPOSTA - STATUS 201`
 
 ```json
 [
