@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import {
-  createUserController,
-  deleteUserController,
-  listUserByIdController,
-  listUsersController,
-  updateUserController,
+    createUserController,
+    deleteUserController,
+    listUserByIdController,
+    listUsersController,
+    updateUserController,
 } from '../controllers/users.controller';
 import ensureAuthMiddleware from '../middlewares/users/ensureAuth.middleware';
 import { ensureExistsUserMiddleware } from '../middlewares/users/ensureExistsUser.middleware';
@@ -18,25 +18,25 @@ const userRoutes = Router();
 userRoutes.get('', ensureAuthMiddleware, listUsersController);
 
 userRoutes.get(
-  '/:id',
-  ensureAuthMiddleware,
-  ensureExistUserIDMiddleware,
-  listUserByIdController
+    '/:id',
+    ensureAuthMiddleware,
+    ensureExistUserIDMiddleware,
+    listUserByIdController
 );
 
 userRoutes.patch(
-  '/:id',
-  ensureAuthMiddleware,
-  ensureExistUserIDMiddleware,
-  ensureOwnerIsAdmMiddleware,
-  ensureIsActiveMiddleware,
-  updateUserController
+    '/:id',
+    ensureAuthMiddleware,
+    ensureExistUserIDMiddleware,
+    ensureOwnerIsAdmMiddleware,
+    ensureIsActiveMiddleware,
+    updateUserController
 );
 
 userRoutes.post(
-  '',
-  ensureExistsUserMiddleware(userSchema),
-  createUserController
+    '',
+    ensureExistsUserMiddleware(userSchema),
+    createUserController
 );
 
 userRoutes.delete('/:id', ensureAuthMiddleware, deleteUserController);

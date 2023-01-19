@@ -15,7 +15,7 @@ const listPostsController = async (req: Request, res: Response) => {
 
 const newPostController = async (req: Request, res: Response) => {
     const postData: IPosts = req.body;
-    const userId = req.user.id
+    const userId = req.user.id;
 
     const newPost = await newPostService(postData, userId);
     return res.status(201).json(newPost);
