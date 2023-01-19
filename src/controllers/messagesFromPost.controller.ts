@@ -7,7 +7,7 @@ const listAllMessagesFromPostController = async (
 ) => {
     const messageId: string = req.params.id;
     const posts = await listAllMessagesFromPostService(messageId);
-    return res.json(posts);
+    return res.json({ message: posts });
 };
 
 export { listAllMessagesFromPostController };
