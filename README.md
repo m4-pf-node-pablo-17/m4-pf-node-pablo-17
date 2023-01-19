@@ -380,10 +380,57 @@ Nessa aplicação o usuário após fazer o login ou se cadastrar pode ver usuár
 
 ## Rota para buscar todos produtos: 
 
-`GET /products/users/:id - FORMATO DA RESPOSTA - STATUS 201`
+`GET /products/ - FORMATO DA RESPOSTA - STATUS 201`
 
 ```json
-message": "Erro interno no servidor
+[
+	{
+		"user": {
+			"updatedAt": "2023-01-19T00:39:20.873Z",
+			"createdAt": "2023-01-19T00:30:03.767Z",
+			"isActive": true,
+			"isStore": false,
+			"register": "11122233344",
+			"contact": "11888888888",
+			"email": "igor@gmail.com",
+			"name": "Igor Ramon",
+			"image": "https://source.unsplash.com/random",
+			"id": "e3dcbd57-c755-4627-87c3-0595ccbf4568"
+		},
+		"isActive": true,
+		"updatedAt": "2023-01-19T00:50:06.997Z",
+		"createdAt": "2023-01-19T00:50:06.997Z",
+		"quantity": 1,
+		"price": 1000,
+		"image": "https://source.unsplash.com/random",
+		"description": "Para seus gêmeos",
+		"name": "Carrinho duplo",
+		"id": "9564c528-e2b3-44a7-9444-4e17235a212f"
+	},
+	{
+		"user": {
+			"updatedAt": "2023-01-19T00:39:20.873Z",
+			"createdAt": "2023-01-19T00:30:03.767Z",
+			"isActive": true,
+			"isStore": false,
+			"register": "11122233344",
+			"contact": "11888888888",
+			"email": "igor@gmail.com",
+			"name": "Igor Ramon",
+			"image": "https://source.unsplash.com/random",
+			"id": "e3dcbd57-c755-4627-87c3-0595ccbf4568"
+		},
+		"isActive": true,
+		"updatedAt": "2023-01-19T00:50:42.579Z",
+		"createdAt": "2023-01-19T00:50:42.579Z",
+		"quantity": 1,
+		"price": 1500,
+		"image": "https://source.unsplash.com/random",
+		"description": "Para seus trigêmeos",
+		"name": "Carrinho triplo",
+		"id": "2c04a1af-32ee-43a6-aef9-0fe4c3efb1e7"
+	}
+]
 ```
 
 ## Rota para buscar todos produtos de um usuário: 
@@ -391,7 +438,41 @@ message": "Erro interno no servidor
 `GET /products/users/:id - FORMATO DA RESPOSTA - STATUS 201`
 
 ```json
-no body returned for response
+[
+	{
+		"isActive": true,
+		"updatedAt": "2023-01-19T01:02:32.807Z",
+		"createdAt": "2023-01-19T01:02:32.807Z",
+		"quantity": 1,
+		"price": 10,
+		"image": "fotinha",
+		"description": "teste",
+		"name": "teste",
+		"id": "044a5383-aa4d-4cfc-b358-cad9829612e0"
+	},
+	{
+		"isActive": true,
+		"updatedAt": "2023-01-19T01:02:48.031Z",
+		"createdAt": "2023-01-19T01:02:48.031Z",
+		"quantity": 2,
+		"price": 20,
+		"image": "fotinha",
+		"description": "teste1",
+		"name": "teste1",
+		"id": "162ef8b0-4333-43e6-a2ba-86d150e6cc7e"
+	},
+	{
+		"isActive": true,
+		"updatedAt": "2023-01-19T01:03:01.695Z",
+		"createdAt": "2023-01-19T01:03:01.695Z",
+		"quantity": 3,
+		"price": 30,
+		"image": "fotinha",
+		"description": "teste2",
+		"name": "teste2",
+		"id": "10a620e8-967c-43d6-9273-c368f191920d"
+	}
+]
 ```
 
 ## Rota para buscar um produto pelo id: 
