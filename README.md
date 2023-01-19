@@ -2,6 +2,14 @@
 
 Esse é o repositório da API Imami, feita com TypeORM.
 
+## Diagrama da aplicação
+<details> 
+<summary>Clique para ver a imagem do diagrama</summary>  
+	
+![fullscreen](https://user-images.githubusercontent.com/57195630/213470063-a19e74d4-6b69-4f99-91da-c8a6cc66b760.png)
+	
+</details>  
+
 ## Endpoints
 
 Existe 1 endpoint que pode ser utilizados para cadastro e 1 endpoint que pode ser usados para login.
